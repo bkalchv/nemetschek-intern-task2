@@ -10,6 +10,7 @@
 
 @interface TableViewController()
 @property (strong, nonatomic) NSArray<Party*>* tableData;
+@property Boolean appearedOnce;
 @end
 
 @implementation TableViewController
@@ -48,6 +49,8 @@
     [[Party alloc] initWithName: @"Има такъв народ"  numberOfAppearance: 29],
     [[Party alloc] initWithName: @"Пряка демокрация" numberOfAppearance: 30],
     [[Party alloc] initWithName: @"Не подкрепям никого" numberOfAppearance: 31]];
+    
+    self.appearedOnce = false;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -59,6 +62,22 @@
     cell.textLabel.text = [NSString stringWithFormat: @"%ld. %@", (long)[self.tableData objectAtIndex:indexPath.row].numberOfAppearance, [self.tableData objectAtIndex:indexPath.row].name];
     
     return cell;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    if (!self.appearedOnce) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Проверка:" message:@"Имате ли навършени 18 години?" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alert addAction: [UIAlertAction actionWithTitle:@"Да" style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction * action) {}]];
+        
+        [alert addAction: [UIAlertAction actionWithTitle:@"Не" style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction * action) {}]];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
+    self.appearedOnce = true;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		424BB341275911C7004DC494 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424BB340275911C7004DC494 /* AlertController.m */; };
 		429FAC932758F000004BB575 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 429FAC922758F000004BB575 /* TableViewController.m */; };
 		429FAC962758F256004BB575 /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 429FAC952758F256004BB575 /* Party.m */; };
 		42BD38562758CB6700C011C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BD38552758CB6700C011C9 /* AppDelegate.m */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		424BB33F275911C7004DC494 /* AlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
+		424BB340275911C7004DC494 /* AlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
 		429FAC912758F000004BB575 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		429FAC922758F000004BB575 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		429FAC942758F256004BB575 /* Party.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Party.h; sourceTree = "<group>"; };
@@ -82,6 +85,8 @@
 				42BD38662758CB6900C011C9 /* main.m */,
 				429FAC942758F256004BB575 /* Party.h */,
 				429FAC952758F256004BB575 /* Party.m */,
+				424BB33F275911C7004DC494 /* AlertController.h */,
+				424BB340275911C7004DC494 /* AlertController.m */,
 			);
 			path = elections;
 			sourceTree = "<group>";
@@ -156,6 +161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				424BB341275911C7004DC494 /* AlertController.m in Sources */,
 				429FAC962758F256004BB575 /* Party.m in Sources */,
 				42BD385C2758CB6700C011C9 /* ViewController.m in Sources */,
 				42BD38562758CB6700C011C9 /* AppDelegate.m in Sources */,
