@@ -11,6 +11,8 @@
 @interface TableViewController()
 @property (strong, nonatomic) NSArray<Party*>* tableData;
 @property Boolean appearedOnce;
+@property Boolean selectedParty;
+@property NSInteger selectedRow;
 @end
 
 @implementation TableViewController
@@ -57,10 +59,10 @@
     
     static NSString* simpleTableIdentifier = @"partyCandidateID";
      
-        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
         
     cell.textLabel.text = [NSString stringWithFormat: @"%ld. %@", (long)[self.tableData objectAtIndex:indexPath.row].numberOfAppearance, [self.tableData objectAtIndex:indexPath.row].name];
-    
+
     return cell;
 }
 
@@ -93,6 +95,12 @@
     }
     
     self.appearedOnce = true;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    // how do you handle the "sROLL" - you dont for now
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

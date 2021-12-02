@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+@interface TableViewController : UITableViewController 
 
 @end
 

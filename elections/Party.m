@@ -18,6 +18,7 @@
     if (self) {
         self.name = name;
         self.numberOfAppearance = numberOfAppearance;
+        self.isChecked = false;
     }
     return self;
 }
