@@ -12,4 +12,3 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonVote;
 
 @end
-

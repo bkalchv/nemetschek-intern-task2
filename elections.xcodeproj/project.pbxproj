@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		429FAC932758F000004BB575 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 429FAC922758F000004BB575 /* TableViewController.m */; };
+		429FAC962758F256004BB575 /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 429FAC952758F256004BB575 /* Party.m */; };
 		42BD38562758CB6700C011C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BD38552758CB6700C011C9 /* AppDelegate.m */; };
 		42BD38592758CB6700C011C9 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BD38582758CB6700C011C9 /* SceneDelegate.m */; };
 		42BD385C2758CB6700C011C9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BD385B2758CB6700C011C9 /* ViewController.m */; };
@@ -17,6 +19,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		429FAC912758F000004BB575 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		429FAC922758F000004BB575 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		429FAC942758F256004BB575 /* Party.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Party.h; sourceTree = "<group>"; };
+		429FAC952758F256004BB575 /* Party.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Party.m; sourceTree = "<group>"; };
 		42BD38512758CB6700C011C9 /* elections.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = elections.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42BD38542758CB6700C011C9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		42BD38552758CB6700C011C9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -62,6 +68,8 @@
 			isa = PBXGroup;
 			children = (
 				42BD38542758CB6700C011C9 /* AppDelegate.h */,
+				429FAC912758F000004BB575 /* TableViewController.h */,
+				429FAC922758F000004BB575 /* TableViewController.m */,
 				42BD38552758CB6700C011C9 /* AppDelegate.m */,
 				42BD38572758CB6700C011C9 /* SceneDelegate.h */,
 				42BD38582758CB6700C011C9 /* SceneDelegate.m */,
@@ -72,6 +80,8 @@
 				42BD38622758CB6900C011C9 /* LaunchScreen.storyboard */,
 				42BD38652758CB6900C011C9 /* Info.plist */,
 				42BD38662758CB6900C011C9 /* main.m */,
+				429FAC942758F256004BB575 /* Party.h */,
+				429FAC952758F256004BB575 /* Party.m */,
 			);
 			path = elections;
 			sourceTree = "<group>";
@@ -146,9 +156,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				429FAC962758F256004BB575 /* Party.m in Sources */,
 				42BD385C2758CB6700C011C9 /* ViewController.m in Sources */,
 				42BD38562758CB6700C011C9 /* AppDelegate.m in Sources */,
 				42BD38672758CB6900C011C9 /* main.m in Sources */,
+				429FAC932758F000004BB575 /* TableViewController.m in Sources */,
 				42BD38592758CB6700C011C9 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
