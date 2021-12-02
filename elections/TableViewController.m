@@ -66,15 +66,30 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     if (!self.appearedOnce) {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Проверка:" message:@"Имате ли навършени 18 години?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController* alertAgeCheck = [UIAlertController alertControllerWithTitle:@"Проверка:" message:@"Имате ли навършени 18 години?" preferredStyle:UIAlertControllerStyleAlert];
         
-        [alert addAction: [UIAlertAction actionWithTitle:@"Да" style:UIAlertActionStyleDefault
+        UIAlertController* alertUnderaged = [UIAlertController alertControllerWithTitle:@"Суек, марш!" message:@"Не си пълнолетен, за да гласуваш!" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alertUnderaged addAction: [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction * action) {
+                                                [self presentViewController: alertUnderaged animated:YES completion:nil];
+        }]];
+        
+        [alertUnderaged addAction: [UIAlertAction actionWithTitle:@"Not Ok" style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction * action) {
+                                                [self presentViewController: alertUnderaged animated:YES completion:nil];
+        }]];
+        
+        [alertAgeCheck addAction: [UIAlertAction actionWithTitle:@"Да" style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction * action) {}]];
         
-        [alert addAction: [UIAlertAction actionWithTitle:@"Не" style:UIAlertActionStyleDefault
-                                                handler:^(UIAlertAction * action) {}]];
+        [alertAgeCheck addAction: [UIAlertAction actionWithTitle:@"Не" style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction * action) {
+                                                [self presentViewController: alertUnderaged animated:YES completion:nil];
+                                                    //boring exit(0);
+                                                }]];
         
-        [self presentViewController:alert animated:YES completion:nil];
+        [self presentViewController:alertAgeCheck animated:YES completion:nil];
     }
     
     self.appearedOnce = true;
