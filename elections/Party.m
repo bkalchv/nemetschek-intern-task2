@@ -19,8 +19,17 @@
         self.name = name;
         self.numberOfAppearance = numberOfAppearance;
         self.isChecked = false;
+        self.votes = @0;
     }
     return self;
+}
+
+- (BOOL)isEqual:(id)object {
+    return [object isKindOfClass:[Party class]] && [self.name isEqual:[object name]];
+}
+
+- (NSUInteger)hash {
+    return [self.name hash];
 }
 
 @end

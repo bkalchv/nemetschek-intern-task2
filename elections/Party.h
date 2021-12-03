@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString* name;
 @property NSInteger numberOfAppearance;
 @property Boolean isChecked;
+@property NSNumber* votes;
 - (instancetype)initWithName:(NSString *) name
           numberOfAppearance:(NSInteger) numberOfAppearance;
 
