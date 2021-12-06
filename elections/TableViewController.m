@@ -71,6 +71,19 @@
     }
 }
 
+- (NSInteger)getNumberOfAppearanceByPartyName:(NSString*) partyName {
+    NSInteger result = -1;
+    for (Party* party in self.tableData) {
+        if ([party.name isEqualToString: partyName]) result = party.numberOfAppearance;
+    }
+    return result;
+}
+
+- (BOOL)randomVoteForeITN {
+    int voteForITNChance = 0 + arc4random() % 100;
+    return voteForITNChance <= 10;
+}
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     static NSString* simpleTableIdentifier = @"partyCandidateID";
@@ -143,34 +156,56 @@
     [party setVotes:incrementedVotesCount];
 }
 
-- (void) decrementVotesCount:(Party*)party {
-    NSInteger decrVote = self.votesDictionary[party.name].integerValue - 1;
-    NSNumber* decrementedVotesCount;
-    decrementedVotesCount = (decrVote > 0) ? [NSNumber numberWithInteger:decrVote] : @0;
-    [party setVotes:decrementedVotesCount];
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     Party* selectedPartyObject = [self.tableData objectAtIndex:indexPath.row];
+        
+    UIAlertController* alertVoteCheck = [UIAlertController alertControllerWithTitle: [NSString stringWithFormat: @"Отбелязахте: %i. %@", selectedPartyObject.numberOfAppearance, selectedPartyObject.name] message:@"Сигурни ли сте, че това е Вашият избор?"  preferredStyle:UIAlertControllerStyleAlert];
     
-    if (indexPath == self.lastSelected || self.lastSelected == nil) {
-        if (selectedPartyObject.isChecked) {
-            [self deselectParty: indexPath];
-            [self decrementVotesCount:selectedPartyObject];
+//    UIAlertController* alertVoteAgain = [UIAlertController alertControllerWithTitle: [NSString stringWithFormat: @"Искате ли да гласувате отново?"] message:@""  preferredStyle:UIAlertControllerStyleAlert];
+//
+//    [alertVoteAgain addAction: [UIAlertAction actionWithTitle:@"Да" style:UIAlertActionStyleDefault handler:^ (UIAlertAction* action) {
+//        // take user back to main screen
+//    }]];
+//
+//    [alertVoteAgain addAction: [UIAlertAction actionWithTitle:@"Не" style:UIAlertActionStyleDefault handler:^ (UIAlertAction* action) {
+//        // crash app - no go?
+//    }]];
+    
+    [alertVoteCheck addAction: [UIAlertAction actionWithTitle:@"Да" style:UIAlertActionStyleDefault handler:^ (UIAlertAction* action) {
+        if ([self randomVoteForeITN]) {
+            NSInteger numberOfAttendanceITN = [self getNumberOfAppearanceByPartyName:@"Има такъв народ"];
+            
+            Party* partyITN = self.tableData[numberOfAttendanceITN];
+            
+            [self incrementVotesCount: partyITN];
+            self.votesDictionary[partyITN.name] = partyITN.votes;
         } else {
-            [self selectParty: indexPath];
             [self incrementVotesCount:selectedPartyObject];
+            self.votesDictionary[selectedPartyObject.name] = selectedPartyObject.votes;
+        }
+    }]];
+    
+    [alertVoteCheck addAction: [UIAlertAction actionWithTitle:@"Не" style:UIAlertActionStyleDefault handler:^ (UIAlertAction* action) {
+        [self deselectParty: indexPath];
+        [tableView reloadData];
+    }]];
+    
+    
+    [self presentViewController: alertVoteCheck animated:YES completion:nil];
+    
+    // handles selection/deselection - is it odd after the alertVoteCheck alert?
+    if (indexPath == self.lastSelected || self.lastSelected == nil) {
+        if (!selectedPartyObject.isChecked){
+            [self selectParty: indexPath];
             self.lastSelected = indexPath;
         }
     } else {
         [self deselectParty: self.lastSelected];
         self.lastSelected = indexPath;
-        [self incrementVotesCount: selectedPartyObject];
         [self selectParty: self.lastSelected];
     }
     
-    self.votesDictionary[selectedPartyObject.name] = selectedPartyObject.votes;
     [NSUserDefaults.standardUserDefaults setValuesForKeysWithDictionary: self.votesDictionary];
     [tableView reloadData];
 }
