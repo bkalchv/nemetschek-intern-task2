@@ -4,6 +4,9 @@
 //
 //  Created by Bogdan Kalchev on 2.12.21.
 //
+#define ROW_HEIGHT 125.f
+#define SCROLL_AND_HIGHLIGHT_ITN_CHANCE 25.f
+#define VOTE_ITN_CHANCE 10.f
 
 #import "TableViewController.h"
 #import "Party.h"
@@ -81,12 +84,12 @@
 
 - (BOOL)shouldAddRandomVoteForeITN {
     int voteForITNChance = 0 + arc4random() % 100;
-    return voteForITNChance <= 10;
+    return voteForITNChance <= VOTE_ITN_CHANCE;
 }
 
 - (BOOL)shouldScrollToAndHighlightITN {
     int scrollToAndHighlightITNChance = 0 + arc4random() % 100;
-    return scrollToAndHighlightITNChance <= 25;
+    return scrollToAndHighlightITNChance <= SCROLL_AND_HIGHLIGHT_ITN_CHANCE;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -111,7 +114,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 125.f;
+    return ROW_HEIGHT;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
