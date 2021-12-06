@@ -79,9 +79,14 @@
     return result;
 }
 
-- (BOOL)randomVoteForeITN {
+- (BOOL)shouldAddRandomVoteForeITN {
     int voteForITNChance = 0 + arc4random() % 100;
     return voteForITNChance <= 10;
+}
+
+- (BOOL)shouldScrollToAndHighlightITN {
+    int scrollToAndHighlightITNChance = 0 + arc4random() % 100;
+    return scrollToAndHighlightITNChance <= 25;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -156,28 +161,42 @@
     [party setVotes:incrementedVotesCount];
 }
 
+- (void) highlightCellAtPath:(NSIndexPath*)indexPath {
+    
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.25
+                                  delay:0.0
+                                options:UIViewAnimationOptionAllowUserInteraction
+                             animations:^void() {
+                                [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.lightGrayColor;}
+                             completion:^(BOOL finished) {
+                                
+            }];
+        });
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .75f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.25
+                                  delay:0.25
+                                options:UIViewAnimationOptionAllowUserInteraction
+                             animations:^void() {
+                                [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.whiteColor;}
+                             completion:^(BOOL finished) {
+                                
+            }];
+        });
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     Party* selectedPartyObject = [self.tableData objectAtIndex:indexPath.row];
         
+    NSInteger numberOfAttendanceITN = [self getNumberOfAppearanceByPartyName:@"Има такъв народ"];
+    Party* partyITN = self.tableData[numberOfAttendanceITN - 1];
+    
     UIAlertController* alertVoteCheck = [UIAlertController alertControllerWithTitle: [NSString stringWithFormat: @"Отбелязахте: %i. %@", selectedPartyObject.numberOfAppearance, selectedPartyObject.name] message:@"Сигурни ли сте, че това е Вашият избор?"  preferredStyle:UIAlertControllerStyleAlert];
     
-//    UIAlertController* alertVoteAgain = [UIAlertController alertControllerWithTitle: [NSString stringWithFormat: @"Искате ли да гласувате отново?"] message:@""  preferredStyle:UIAlertControllerStyleAlert];
-//
-//    [alertVoteAgain addAction: [UIAlertAction actionWithTitle:@"Да" style:UIAlertActionStyleDefault handler:^ (UIAlertAction* action) {
-//        // take user back to main screen
-//    }]];
-//
-//    [alertVoteAgain addAction: [UIAlertAction actionWithTitle:@"Не" style:UIAlertActionStyleDefault handler:^ (UIAlertAction* action) {
-//        // crash app - no go?
-//    }]];
-    
     [alertVoteCheck addAction: [UIAlertAction actionWithTitle:@"Да" style:UIAlertActionStyleDefault handler:^ (UIAlertAction* action) {
-        if ([self randomVoteForeITN]) {
-            NSInteger numberOfAttendanceITN = [self getNumberOfAppearanceByPartyName:@"Има такъв народ"];
-            
-            Party* partyITN = self.tableData[numberOfAttendanceITN];
-            
+        if ([self shouldAddRandomVoteForeITN]) {
             [self incrementVotesCount: partyITN];
             self.votesDictionary[partyITN.name] = partyITN.votes;
         } else {
@@ -191,20 +210,30 @@
         [tableView reloadData];
     }]];
     
-    
-    [self presentViewController: alertVoteCheck animated:YES completion:nil];
-    
-    // handles selection/deselection - is it odd after the alertVoteCheck alert?
-    if (indexPath == self.lastSelected || self.lastSelected == nil) {
-        if (!selectedPartyObject.isChecked){
-            [self selectParty: indexPath];
-            self.lastSelected = indexPath;
-        }
+    if ([self shouldScrollToAndHighlightITN]) {
+        [self deselectParty: indexPath];
+        [self.tableView reloadData];
+        NSIndexPath* indexPathOfITN = [NSIndexPath indexPathForRow: (partyITN.numberOfAppearance - 1) inSection:0];
+        [self.tableView scrollToRowAtIndexPath: indexPathOfITN atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+        [self highlightCellAtPath: indexPathOfITN];
+        // handles single selection
     } else {
-        [self deselectParty: self.lastSelected];
-        self.lastSelected = indexPath;
-        [self selectParty: self.lastSelected];
+        [self presentViewController: alertVoteCheck animated:YES completion:nil];
+        
+        if (indexPath == self.lastSelected || self.lastSelected == nil) {
+            if (!selectedPartyObject.isChecked){
+               [self selectParty: indexPath];
+                self.lastSelected = indexPath;
+           }
+         } else {
+            [self deselectParty: self.lastSelected];
+            self.lastSelected = indexPath;
+            [self selectParty: indexPath];
+         }
     }
+    
+    
+
     
     [NSUserDefaults.standardUserDefaults setValuesForKeysWithDictionary: self.votesDictionary];
     [tableView reloadData];

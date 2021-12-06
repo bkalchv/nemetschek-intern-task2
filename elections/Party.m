@@ -25,7 +25,14 @@
 }
 
 - (BOOL)isEqual:(id)object {
-    return [object isKindOfClass:[Party class]] && [self.name isEqual:[object name]];
+    Party *rhs = (Party *)object;
+    if (![rhs isKindOfClass:Party.class])
+    {
+        return NO;
+    }
+    
+    return [self.name isEqualToString:rhs.name]
+            && self.numberOfAppearance == rhs.numberOfAppearance;
 }
 
 - (NSUInteger)hash {
