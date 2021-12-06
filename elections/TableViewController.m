@@ -7,6 +7,7 @@
 
 #import "TableViewController.h"
 #import "Party.h"
+#import "PartyTableViewCell.h"
 
 @interface TableViewController()
 @property (strong, nonatomic) NSArray<Party*>* tableData;
@@ -74,7 +75,7 @@
     
     static NSString* simpleTableIdentifier = @"partyCandidateID";
      
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    PartyTableViewCell* cell = (PartyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     Party* currentParty = self.tableData[indexPath.row];
     if (currentParty.isChecked) {
@@ -82,14 +83,17 @@
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+    NSString* imageFilename = [NSString stringWithFormat: @"%ld", (long) currentParty.numberOfAppearance];
     
-    NSString* probableImageFilename = [NSString stringWithFormat: @"%ld", (long) currentParty.numberOfAppearance];
-    //bool imageExists = [UIImage imageNamed: probableImageFilename] != nil;
-    cell.imageView.image = [UIImage imageNamed: probableImageFilename];
-      
-    cell.textLabel.text = [NSString stringWithFormat: @"%ld. %@", (long)[self.tableData objectAtIndex:indexPath.row].numberOfAppearance, [self.tableData objectAtIndex:indexPath.row].name];
+    cell.partyImage.image = [UIImage imageNamed: imageFilename];
+    cell.partyContent.text = [NSString stringWithFormat: @"%i. %@", [self.tableData objectAtIndex:indexPath.row].numberOfAppearance, [self.tableData objectAtIndex:indexPath.row].name];
 
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 125.f;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

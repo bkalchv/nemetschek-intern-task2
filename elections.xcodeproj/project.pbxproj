@@ -17,6 +17,7 @@
 		42BD38612758CB6900C011C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42BD38602758CB6900C011C9 /* Assets.xcassets */; };
 		42BD38642758CB6900C011C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42BD38622758CB6900C011C9 /* LaunchScreen.storyboard */; };
 		42BD38672758CB6900C011C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BD38662758CB6900C011C9 /* main.m */; };
+		42F0C40C275E26C300631EE5 /* PartyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0C40B275E26C300631EE5 /* PartyTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		42BD38632758CB6900C011C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42BD38652758CB6900C011C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42BD38662758CB6900C011C9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		42F0C40A275E26C300631EE5 /* PartyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PartyTableViewCell.h; sourceTree = "<group>"; };
+		42F0C40B275E26C300631EE5 /* PartyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,8 @@
 		42BD38532758CB6700C011C9 /* elections */ = {
 			isa = PBXGroup;
 			children = (
+				42F0C40A275E26C300631EE5 /* PartyTableViewCell.h */,
+				42F0C40B275E26C300631EE5 /* PartyTableViewCell.m */,
 				42BD38542758CB6700C011C9 /* AppDelegate.h */,
 				429FAC912758F000004BB575 /* TableViewController.h */,
 				429FAC922758F000004BB575 /* TableViewController.m */,
@@ -163,6 +168,7 @@
 			files = (
 				424BB341275911C7004DC494 /* AlertController.m in Sources */,
 				429FAC962758F256004BB575 /* Party.m in Sources */,
+				42F0C40C275E26C300631EE5 /* PartyTableViewCell.m in Sources */,
 				42BD385C2758CB6700C011C9 /* ViewController.m in Sources */,
 				42BD38562758CB6700C011C9 /* AppDelegate.m in Sources */,
 				42BD38672758CB6900C011C9 /* main.m in Sources */,
