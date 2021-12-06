@@ -157,11 +157,13 @@
         } else {
             [self selectParty: indexPath];
             [self incrementVotesCount:selectedPartyObject];
+            self.lastSelected = indexPath;
         }
     } else {
         [self deselectParty: self.lastSelected];
         self.lastSelected = indexPath;
         [self incrementVotesCount: selectedPartyObject];
+        [self selectParty: self.lastSelected];
     }
     
     self.votesDictionary[selectedPartyObject.name] = selectedPartyObject.votes;
