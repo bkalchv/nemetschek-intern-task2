@@ -88,6 +88,7 @@
 }
 
 - (BOOL)shouldScrollToAndHighlightITN {
+    return YES;
     int scrollToAndHighlightITNChance = 0 + arc4random() % 100;
     return scrollToAndHighlightITNChance <= SCROLL_AND_HIGHLIGHT_ITN_CHANCE;
 }
@@ -165,28 +166,55 @@
 }
 
 - (void) highlightCellAtPath:(NSIndexPath*)indexPath {
-    
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.25
-                                  delay:0.0
-                                options:UIViewAnimationOptionAllowUserInteraction
-                             animations:^void() {
-                                [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.lightGrayColor;}
-                             completion:^(BOOL finished) {
-                                
+        [UIView animateKeyframesWithDuration:2.0 delay:0.0 options:UIViewKeyframeAnimationOptionAutoreverse | UIViewKeyframeAnimationOptionRepeat animations:^{
+            [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 animations:^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    [UIView animateWithDuration:0.15
+                                          delay:0.0
+                                        options:UIViewAnimationOptionAllowUserInteraction
+                                     animations:^void() {
+                                        [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.lightGrayColor;}
+                                     completion:^(BOOL finished) {
+                                        
+                    }];
+                });
             }];
-        });
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .75f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.25
-                                  delay:0.25
-                                options:UIViewAnimationOptionAllowUserInteraction
-                             animations:^void() {
-                                [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.whiteColor;}
-                             completion:^(BOOL finished) {
-                                
+            [UIView addKeyframeWithRelativeStartTime:0.5 relativeDuration:0.5 animations:^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .75f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    [UIView animateWithDuration:0.15
+                                          delay:0.0
+                                        options:UIViewAnimationOptionAllowUserInteraction
+                                     animations:^void() {
+                                        [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.whiteColor;}
+                                     completion:^(BOOL finished) {
+                                        
+                    }];
+                });
             }];
-        });
+            [UIView addKeyframeWithRelativeStartTime:1.0 relativeDuration:0.5 animations:^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    [UIView animateWithDuration:0.15
+                                          delay:0.0                                        options:UIViewAnimationOptionAllowUserInteraction
+                                     animations:^void() {
+                                        [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.lightGrayColor;}
+                                     completion:^(BOOL finished) {
+                                        
+                    }];
+                });
+            }];
+            [UIView addKeyframeWithRelativeStartTime:1.5 relativeDuration:0.5 animations:^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.25f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    [UIView animateWithDuration:0.15
+                                          delay:0.45
+                                        options:UIViewAnimationOptionAllowUserInteraction
+                                     animations:^void() {
+                                        [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.whiteColor;}
+                                     completion:^(BOOL finished) {
+                                        
+                    }];
+                });
+            }];
+        } completion:nil];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -229,6 +257,7 @@
                 self.lastSelected = indexPath;
            }
          } else {
+             
             [self deselectParty: self.lastSelected];
             self.lastSelected = indexPath;
             [self selectParty: indexPath];
