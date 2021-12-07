@@ -88,6 +88,7 @@
 }
 
 - (BOOL)shouldScrollToAndHighlightITN {
+    return YES;
     int scrollToAndHighlightITNChance = 0 + arc4random() % 100;
     return scrollToAndHighlightITNChance <= SCROLL_AND_HIGHLIGHT_ITN_CHANCE;
 }
@@ -166,7 +167,39 @@
 }
 
 - (void) highlightCellAtPath:(NSIndexPath*)indexPath {
-        [UIView animateKeyframesWithDuration:2.0 delay:0.0 options:UIViewKeyframeAnimationOptionAutoreverse animations:^{
+    
+            
+//    [UIView animateWithDuration:0.5
+//                          delay:0.0
+//                        options:UIViewAnimationOptionAllowUserInteraction
+//                     animations:^void() {
+//                        self.view.userInteractionEnabled = NO;
+//                        [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.lightGrayColor;}
+//                     completion:^(BOOL finished) {
+//        [UIView animateWithDuration:0.15
+//                              delay:0.15
+//                            options:UIViewAnimationOptionAllowUserInteraction
+//                         animations:^void() {
+//                            [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.whiteColor;}
+//                         completion:^(BOOL finished) {
+//            [UIView animateWithDuration:0.15
+//                                  delay:0.3                                        options:UIViewAnimationOptionAllowUserInteraction
+//                             animations:^void() {
+//                            [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.lightGrayColor;}
+//                             completion:^(BOOL finished) {
+//                [UIView animateWithDuration:0.15
+//                                        delay:0.45
+//                                        options:UIViewAnimationOptionAllowUserInteraction
+//                                    animations:^void() {
+//                                        [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.whiteColor;}
+//                                    completion:^(BOOL finished) {
+//                                        self.view.userInteractionEnabled = YES;
+//                    }];
+//            }];
+//        }];
+//    }];
+    
+            [UIView animateKeyframesWithDuration:2.0 delay:0.0 options:UIViewKeyframeAnimationOptionAutoreverse animations:^{
             self.view.userInteractionEnabled = NO;
             [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 animations:^{
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -176,7 +209,7 @@
                                      animations:^void() {
                                         [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.lightGrayColor;}
                                      completion:^(BOOL finished) {
-                                        
+
                     }];
                 });
             }];
@@ -188,7 +221,7 @@
                                      animations:^void() {
                                         [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.whiteColor;}
                                      completion:^(BOOL finished) {
-                                        
+
                     }];
                 });
             }];
@@ -199,7 +232,7 @@
                                      animations:^void() {
                                         [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.lightGrayColor;}
                                      completion:^(BOOL finished) {
-                                        
+
                     }];
                 });
             }];
