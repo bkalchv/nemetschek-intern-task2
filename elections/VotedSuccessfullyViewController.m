@@ -21,6 +21,7 @@
     // Do any additional setup after loading the view.
 }
 
+
 /*
 #pragma mark - Navigation
 
@@ -35,6 +36,7 @@
 }
 
 - (IBAction)onNextButtonClick:(id)sender {
-    
+    [self.delegate shouldRefreshScreen];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

@@ -166,7 +166,7 @@
 }
 
 - (void) highlightCellAtPath:(NSIndexPath*)indexPath {
-        [UIView animateKeyframesWithDuration:2.0 delay:0.0 options:UIViewKeyframeAnimationOptionAutoreverse | UIViewKeyframeAnimationOptionRepeat animations:^{
+        [UIView animateKeyframesWithDuration:2.0 delay:0.0 options:UIViewKeyframeAnimationOptionAutoreverse animations:^{
             self.view.userInteractionEnabled = NO;
             [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 animations:^{
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -206,7 +206,7 @@
             [UIView addKeyframeWithRelativeStartTime:1.5 relativeDuration:0.5 animations:^{
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.25f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     [UIView animateWithDuration:0.15
-                                          delay:0.45
+                                          delay:0.0
                                         options:UIViewAnimationOptionAllowUserInteraction
                                      animations:^void() {
                                         [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.whiteColor;}
@@ -233,12 +233,16 @@
         } else {
             [self incrementVotesCount:selectedPartyObject];
         }
+        
+        [self deselectParty: indexPath];
+        
         UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController* votedSuccessfullyVC = [storyboard instantiateViewControllerWithIdentifier:@"VotedSuccesfullyViewController"];
+        VotedSuccessfullyViewController* votedSuccessfullyVC = [storyboard instantiateViewControllerWithIdentifier:@"VotedSuccesfullyViewController"];
+        votedSuccessfullyVC.delegate = self;
         [self presentViewController:votedSuccessfullyVC animated:YES completion:nil];
     }]];
     
-    [alertVoteCheck addAction: [UIAlertAction actionWithTitle:@"Не" style:UIAlertActionStyleDefault handler:^ (UIAlertAction* action) {
+    [alertVoteCheck addAction: [UIAlertAction actionWithTitle:@"Не" style:UIAlertActionStyleDestructive handler:^ (UIAlertAction* action) {
         [self deselectParty: indexPath];
         [tableView reloadData];
     }]];
@@ -271,6 +275,14 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.tableData count];
+}
+
+- (void)shouldRefreshScreen {
+    [self deselectParty: self.lastSelected];
+    NSIndexPath* indexPathTop = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPathTop atScrollPosition: UITableViewScrollPositionTop animated:YES];
+    self.appearedOnce = false;
+    [self.tableView reloadData];
 }
 
 
