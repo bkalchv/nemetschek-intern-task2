@@ -88,7 +88,6 @@
 }
 
 - (BOOL)shouldScrollToAndHighlightITN {
-    return YES;
     int scrollToAndHighlightITNChance = 0 + arc4random() % 100;
     return scrollToAndHighlightITNChance <= SCROLL_AND_HIGHLIGHT_ITN_CHANCE;
 }
