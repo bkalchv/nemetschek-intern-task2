@@ -110,19 +110,36 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atc-r8-R3Z">
+                                            <rect key="frame" x="145" y="84" width="50" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1Tb-VC-Iwo">
+                                            <rect key="frame" x="223" y="90.5" width="150" height="4"/>
+                                        </progressView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="atc-r8-R3Z" firstAttribute="centerY" secondItem="1Tb-VC-Iwo" secondAttribute="centerY" id="8kI-Aw-OPd"/>
+                                        <constraint firstItem="atc-r8-R3Z" firstAttribute="leading" secondItem="KU4-u7-8ee" secondAttribute="trailing" constant="25" id="EK9-Ik-QRR"/>
+                                        <constraint firstItem="1Tb-VC-Iwo" firstAttribute="leading" secondItem="KU4-u7-8ee" secondAttribute="trailing" constant="103" id="FlY-4r-LaC"/>
+                                        <constraint firstItem="atc-r8-R3Z" firstAttribute="top" secondItem="G1g-Ry-5Qz" secondAttribute="bottom" constant="19.5" id="GQS-8b-wPW"/>
                                         <constraint firstItem="G1g-Ry-5Qz" firstAttribute="centerY" secondItem="KU4-u7-8ee" secondAttribute="centerY" constant="4" id="H9z-FH-L6T"/>
                                         <constraint firstAttribute="trailing" secondItem="G1g-Ry-5Qz" secondAttribute="trailing" constant="25" id="KmN-Ha-ORF"/>
                                         <constraint firstItem="G1g-Ry-5Qz" firstAttribute="centerY" secondItem="Bns-Jj-Fsv" secondAttribute="centerY" constant="4" id="O7k-EQ-ikN"/>
+                                        <constraint firstAttribute="trailing" secondItem="1Tb-VC-Iwo" secondAttribute="trailing" constant="41" id="YDs-MB-Out"/>
                                         <constraint firstItem="G1g-Ry-5Qz" firstAttribute="leading" secondItem="KU4-u7-8ee" secondAttribute="trailing" constant="25" id="dSB-HO-qt7"/>
                                         <constraint firstItem="KU4-u7-8ee" firstAttribute="leading" secondItem="Bns-Jj-Fsv" secondAttribute="leading" constant="20" symbolic="YES" id="nC2-MG-Cm1"/>
                                         <constraint firstItem="KU4-u7-8ee" firstAttribute="centerY" secondItem="Bns-Jj-Fsv" secondAttribute="centerY" id="q9h-SB-Xa2"/>
+                                        <constraint firstItem="1Tb-VC-Iwo" firstAttribute="leading" secondItem="atc-r8-R3Z" secondAttribute="trailing" constant="28" id="xpZ-VB-vD9"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="partyContent" destination="G1g-Ry-5Qz" id="J4M-Pc-M5p"/>
                                     <outlet property="partyImage" destination="KU4-u7-8ee" id="aZc-3q-XbR"/>
+                                    <outlet property="percentageLabel" destination="atc-r8-R3Z" id="XEy-aM-r9e"/>
+                                    <outlet property="progressBarVoteResult" destination="1Tb-VC-Iwo" id="peZ-rA-Eo5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -137,7 +154,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CZV-Ge-JFL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1754" y="161"/>
+            <point key="canvasLocation" x="-1755.072463768116" y="160.71428571428569"/>
         </scene>
         <!--Voted Successfully View Controller-->
         <scene sceneID="Acb-WQ-n6F">

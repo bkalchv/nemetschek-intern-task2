@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol VotedSuccessfullyViewControllerDelegate <NSObject>
 - (void) shouldRefreshScreen;
+- (void) makeResultsVisible;
 @end
 
 @interface VotedSuccessfullyViewController : ViewController

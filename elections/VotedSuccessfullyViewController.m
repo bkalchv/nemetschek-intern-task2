@@ -33,6 +33,8 @@
 */
 
 - (IBAction)onShowResultsButtonClick:(id)sender {
+    [self.delegate makeResultsVisible];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)onNextButtonClick:(id)sender {

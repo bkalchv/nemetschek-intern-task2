@@ -15,13 +15,14 @@
 @interface TableViewController()
 @property (strong, nonatomic) NSArray<Party*>* tableData;
 @property Boolean appearedOnce;
+@property Boolean resultsHidden;
 @property NSMutableDictionary<NSString *, NSNumber *>* votesDictionary;
 @property NSIndexPath* lastSelected;
 @end
 
 @implementation TableViewController
 
-- (NSInteger)totalVotes {
+- (NSInteger)calculateTotalVotes {
     NSInteger votesInTotal = 0;
     for (Party* party in self.tableData) {
         votesInTotal += [party.votes integerValue];
@@ -64,7 +65,7 @@
     [[Party alloc] initWithName: @"Пряка демокрация" numberOfAppearance: 30],
     [[Party alloc] initWithName: @"Не подкрепям никого" numberOfAppearance: 31]];
     
-    self.appearedOnce = false;
+    self.appearedOnce = NO;
     
     self.votesDictionary = [[NSMutableDictionary alloc] init];
     
@@ -72,6 +73,8 @@
         NSString* currentPartyName = self.tableData[idx].name;
         self.votesDictionary[currentPartyName] = @0;
     }
+    
+    self.resultsHidden = YES;
 }
 
 - (NSInteger)getNumberOfAppearanceByPartyName:(NSString*) partyName {
@@ -92,6 +95,11 @@
     return scrollToAndHighlightITNChance <= SCROLL_AND_HIGHLIGHT_ITN_CHANCE;
 }
 
+- (float) calculateVotesShareOfParty:(Party*)party {
+    float partyVotes = [party.votes floatValue];
+    return (partyVotes / [self calculateTotalVotes]);
+}
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     static NSString* simpleTableIdentifier = @"partyCandidateID";
@@ -99,6 +107,9 @@
     PartyTableViewCell* cell = (PartyTableViewCell*)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     Party* currentParty = self.tableData[indexPath.row];
+    
+    float currentPartyVotesShare = [self calculateVotesShareOfParty:currentParty];
+    
     if (currentParty.isChecked) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
@@ -108,7 +119,19 @@
     
     cell.partyImage.image = [UIImage imageNamed: imageFilename];
     cell.partyContent.text = [NSString stringWithFormat: @"%i. %@", [self.tableData objectAtIndex:indexPath.row].numberOfAppearance, [self.tableData objectAtIndex:indexPath.row].name];
+    
+    cell.progressBarVoteResult.progress = currentPartyVotesShare;
+    cell.percentageLabel.text = [NSString stringWithFormat: @"%.2f%%", (double) currentPartyVotesShare * 100];
+    
+    if (self.resultsHidden) {
+        cell.progressBarVoteResult.hidden = YES;
+        cell.percentageLabel.hidden = YES;
+    } else {
+        cell.progressBarVoteResult.hidden = NO;
+        cell.percentageLabel.hidden = NO;
+    }
 
+    
     return cell;
 }
 
@@ -145,7 +168,7 @@
         [self presentViewController:alertAgeCheck animated:YES completion:nil];
     }
     
-    self.appearedOnce = true;
+    self.appearedOnce = YES;
 }
 
 - (void) selectParty:(NSIndexPath*)indexPath {
@@ -314,6 +337,11 @@
     NSIndexPath* indexPathTop = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView scrollToRowAtIndexPath:indexPathTop atScrollPosition: UITableViewScrollPositionTop animated:YES];
     self.appearedOnce = false;
+    [self.tableView reloadData];
+}
+
+- (void)makeResultsVisible {
+    self.resultsHidden = NO;
     [self.tableView reloadData];
 }
 
