@@ -162,6 +162,7 @@
     NSInteger incrVote = self.votesDictionary[party.name].integerValue + 1;
     NSNumber* incrementedVotesCount = [NSNumber numberWithInteger:incrVote];
     [party setVotes:incrementedVotesCount];
+    self.votesDictionary[party.name] = party.votes;
 }
 
 - (void) highlightCellAtPath:(NSIndexPath*)indexPath {
@@ -229,10 +230,8 @@
     [alertVoteCheck addAction: [UIAlertAction actionWithTitle:@"Да" style:UIAlertActionStyleDefault handler:^ (UIAlertAction* action) {
         if ([self shouldAddRandomVoteForeITN]) {
             [self incrementVotesCount: partyITN];
-            self.votesDictionary[partyITN.name] = partyITN.votes;
         } else {
             [self incrementVotesCount:selectedPartyObject];
-            self.votesDictionary[selectedPartyObject.name] = selectedPartyObject.votes;
         }
     }]];
     
@@ -250,7 +249,6 @@
         // handles single selection
     } else {
         [self presentViewController: alertVoteCheck animated:YES completion:nil];
-        
         if (indexPath == self.lastSelected || self.lastSelected == nil) {
             if (!selectedPartyObject.isChecked){
                [self selectParty: indexPath];
@@ -263,9 +261,6 @@
             [self selectParty: indexPath];
          }
     }
-    
-    
-
     
     [NSUserDefaults.standardUserDefaults setValuesForKeysWithDictionary: self.votesDictionary];
     [tableView reloadData];
