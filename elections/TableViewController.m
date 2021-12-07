@@ -233,6 +233,9 @@
         } else {
             [self incrementVotesCount:selectedPartyObject];
         }
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController* votedSuccessfullyVC = [storyboard instantiateViewControllerWithIdentifier:@"VotedSuccesfullyViewController"];
+        [self presentViewController:votedSuccessfullyVC animated:YES completion:nil];
     }]];
     
     [alertVoteCheck addAction: [UIAlertAction actionWithTitle:@"Не" style:UIAlertActionStyleDefault handler:^ (UIAlertAction* action) {

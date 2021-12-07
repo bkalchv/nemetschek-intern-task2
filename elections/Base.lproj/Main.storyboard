@@ -120,10 +120,10 @@
             </objects>
             <point key="canvasLocation" x="-1762" y="84"/>
         </scene>
-        <!--View Controller-->
+        <!--Voted Successfully View Controller-->
         <scene sceneID="Acb-WQ-n6F">
             <objects>
-                <viewController id="ku9-on-C6D" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VotedSuccesfullyViewController" modalPresentationStyle="fullScreen" id="ku9-on-C6D" customClass="VotedSuccessfullyViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5t9-Gi-kZ7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,6 +151,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Виж резултати"/>
+                                <connections>
+                                    <action selector="onShowResultsButtonClick:" destination="ku9-on-C6D" eventType="touchUpInside" id="qH2-WF-stP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8s1-ih-WOm">
                                 <rect key="frame" x="62" y="689" width="125" height="50"/>
@@ -160,6 +163,10 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Следващия"/>
+                                <connections>
+                                    <action selector="onNextButtonClick:" destination="VDn-3t-NK4" eventType="touchUpInside" id="Opm-QH-roJ"/>
+                                    <action selector="onNextButtonClick:" destination="ku9-on-C6D" eventType="touchUpInside" id="fp1-A9-39w"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NCC-C9-MiZ"/>
@@ -176,8 +183,13 @@
                             <constraint firstItem="NCC-C9-MiZ" firstAttribute="bottom" secondItem="8s1-ih-WOm" secondAttribute="bottom" constant="123" id="lFw-GS-sqz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="nextButton" destination="8s1-ih-WOm" id="mEo-KQ-RDI"/>
+                        <outlet property="showResultsButton" destination="g3x-M3-oqM" id="9eX-Qk-1gh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJN-E1-Lca" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="VDn-3t-NK4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-878.26086956521749" y="83.705357142857139"/>
         </scene>

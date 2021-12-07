@@ -18,6 +18,7 @@
 		42BD38642758CB6900C011C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42BD38622758CB6900C011C9 /* LaunchScreen.storyboard */; };
 		42BD38672758CB6900C011C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BD38662758CB6900C011C9 /* main.m */; };
 		42F0C40C275E26C300631EE5 /* PartyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0C40B275E26C300631EE5 /* PartyTableViewCell.m */; };
+		42FEF4B5275F676A0086AED2 /* VotedSuccessfullyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FEF4B4275F676A0086AED2 /* VotedSuccessfullyViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		42BD38662758CB6900C011C9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		42F0C40A275E26C300631EE5 /* PartyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PartyTableViewCell.h; sourceTree = "<group>"; };
 		42F0C40B275E26C300631EE5 /* PartyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyTableViewCell.m; sourceTree = "<group>"; };
+		42FEF4B3275F676A0086AED2 /* VotedSuccessfullyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VotedSuccessfullyViewController.h; sourceTree = "<group>"; };
+		42FEF4B4275F676A0086AED2 /* VotedSuccessfullyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VotedSuccessfullyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,8 @@
 		42BD38532758CB6700C011C9 /* elections */ = {
 			isa = PBXGroup;
 			children = (
+				42FEF4B3275F676A0086AED2 /* VotedSuccessfullyViewController.h */,
+				42FEF4B4275F676A0086AED2 /* VotedSuccessfullyViewController.m */,
 				42F0C40A275E26C300631EE5 /* PartyTableViewCell.h */,
 				42F0C40B275E26C300631EE5 /* PartyTableViewCell.m */,
 				42BD38542758CB6700C011C9 /* AppDelegate.h */,
@@ -174,6 +179,7 @@
 				42BD38672758CB6900C011C9 /* main.m in Sources */,
 				429FAC932758F000004BB575 /* TableViewController.m in Sources */,
 				42BD38592758CB6700C011C9 /* SceneDelegate.m in Sources */,
+				42FEF4B5275F676A0086AED2 /* VotedSuccessfullyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
