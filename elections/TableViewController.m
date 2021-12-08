@@ -360,12 +360,33 @@
     self.tableView.allowsSelection = NO;
     [self.tableView reloadData];
 }
+
 - (IBAction)onNavBarNextButtonClick:(id)sender {
     self.tableView.allowsSelection = YES;
     [self refreshScreen];
     [self showAgeCheckAlert];
 }
 
-
+- (IBAction)onNavBarLanguageButtonClick:(id)sender {
+    UIAlertController* actionSheetLanguage = [UIAlertController alertControllerWithTitle:@"Избери език" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [actionSheetLanguage addAction:[UIAlertAction actionWithTitle:@"Български" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageBulgarian];
+    }]];
+    
+    [actionSheetLanguage addAction:[UIAlertAction actionWithTitle:@"Türk" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageTurkish];
+    }]];
+    
+    [actionSheetLanguage addAction:[UIAlertAction actionWithTitle:@"English" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageEnglish];
+    }]];
+    
+    [actionSheetLanguage addAction:[UIAlertAction actionWithTitle:@"Deutsch" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageGerman];
+    }]];
+    
+    [self presentViewController:actionSheetLanguage animated:YES completion: nil];
+}
 @end
 

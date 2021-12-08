@@ -156,7 +156,11 @@
                                 <action selector="onNavBarNextButtonClick:" destination="G8R-xF-dLI" id="0jm-6Z-dWH"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="langauge" id="RWb-xV-gQV"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="langauge" id="RWb-xV-gQV">
+                            <connections>
+                                <action selector="onNavBarLanguageButtonClick:" destination="G8R-xF-dLI" id="t3E-9s-rPq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
