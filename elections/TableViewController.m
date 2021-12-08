@@ -177,7 +177,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     if (!self.appearedOnce) {
-        [self showAgeCheckAlert];
+        [self showLanguageActionSheetController];
         self.appearedOnce = YES;
     }
 }
@@ -364,31 +364,39 @@
 - (IBAction)onNavBarNextButtonClick:(id)sender {
     self.tableView.allowsSelection = YES;
     [self refreshScreen];
-    [self showAgeCheckAlert];
+    [self showLanguageActionSheetController];
+}
+
+- (void)showLanguageActionSheetController{
+    UIAlertController* languageActionSheet = [UIAlertController alertControllerWithTitle:@"Избери език" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Български" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageBulgarian];
+        [self showAgeCheckAlert];
+    }]];
+    
+    [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Türk" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageTurkish];
+        [self showAgeCheckAlert];
+    }]];
+    
+    [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"English" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageEnglish];
+        [self showAgeCheckAlert];
+    }]];
+    
+    [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Deutsch" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageGerman];
+        [self showAgeCheckAlert];
+    }]];
+    
+    [self presentViewController: languageActionSheet animated:YES completion:^(void) {
+          [self.tableView reloadData];
+    }];
 }
 
 - (IBAction)onNavBarLanguageButtonClick:(id)sender {
-    UIAlertController* actionSheetLanguage = [UIAlertController alertControllerWithTitle:@"Избери език" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    [actionSheetLanguage addAction:[UIAlertAction actionWithTitle:@"Български" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-        [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageBulgarian];
-    }]];
-    
-    [actionSheetLanguage addAction:[UIAlertAction actionWithTitle:@"Türk" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-        [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageTurkish];
-    }]];
-    
-    [actionSheetLanguage addAction:[UIAlertAction actionWithTitle:@"English" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-        [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageEnglish];
-    }]];
-    
-    [actionSheetLanguage addAction:[UIAlertAction actionWithTitle:@"Deutsch" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-        [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageGerman];
-    }]];
-    
-    [self presentViewController:actionSheetLanguage animated:YES completion:^(void) {
-        [self.tableView reloadData];
-    }];
+    [self showLanguageActionSheetController];
 }
 @end
 
