@@ -337,6 +337,7 @@
     NSIndexPath* indexPathTop = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView scrollToRowAtIndexPath:indexPathTop atScrollPosition: UITableViewScrollPositionTop animated:YES];
     self.appearedOnce = false;
+    self.resultsHidden = YES;
     [self.tableView reloadData];
 }
 
