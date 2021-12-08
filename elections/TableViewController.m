@@ -386,7 +386,9 @@
         [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageGerman];
     }]];
     
-    [self presentViewController:actionSheetLanguage animated:YES completion: nil];
+    [self presentViewController:actionSheetLanguage animated:YES completion:^(void) {
+        [self.tableView reloadData];
+    }];
 }
 @end
 

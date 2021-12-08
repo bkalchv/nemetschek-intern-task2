@@ -95,15 +95,19 @@ static LanguageManager* sharedLanguageManager;
 {
     switch (language) {
         case EnumLanguageGerman:
+            [self setCurrentLanguage:EnumLanguageGerman];
             [self setCurrentLanguageDictionary:_germanLanguage];
             break;
         case EnumLanguageEnglish:
+            [self setCurrentLanguage:EnumLanguageEnglish];
             [self setCurrentLanguageDictionary:_englishLanguage];
             break;
         case EnumLanguageTurkish:
+            [self setCurrentLanguage:EnumLanguageTurkish];
             [self setCurrentLanguageDictionary:_turkishLanguage];
             break;
         case EnumLanguageBulgarian:
+            [self setCurrentLanguage:EnumLanguageBulgarian];
             [self setCurrentLanguageDictionary:_bulgarianLanguage];
         default:
             break;
