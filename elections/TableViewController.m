@@ -355,6 +355,7 @@
 
 - (void)makeResultsVisible {
     self.resultsHidden = NO;
+    [self.navBarNextButton setTitle: [LanguageManager.sharedLanguageManager stringForKey: @"Следващия"]];
     self.navigationItem.leftBarButtonItem = self.navBarNextButton;
     self.tableView.allowsSelection = NO;
     [self.tableView reloadData];

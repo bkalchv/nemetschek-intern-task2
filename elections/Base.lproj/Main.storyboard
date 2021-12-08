@@ -234,6 +234,8 @@
                     <connections>
                         <outlet property="nextButton" destination="8s1-ih-WOm" id="mEo-KQ-RDI"/>
                         <outlet property="showResultsButton" destination="g3x-M3-oqM" id="9eX-Qk-1gh"/>
+                        <outlet property="thankYouLabel" destination="955-IQ-x6D" id="2hK-l0-yjV"/>
+                        <outlet property="votedSuccessfullyLabel" destination="oCt-fn-u3i" id="PRf-P2-mMF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hJN-E1-Lca" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
