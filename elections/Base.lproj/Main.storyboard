@@ -110,21 +110,21 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1Tb-VC-Iwo">
+                                            <rect key="frame" x="223" y="87" width="150" height="4"/>
+                                        </progressView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atc-r8-R3Z">
-                                            <rect key="frame" x="148" y="83.5" width="57" height="11.5"/>
+                                            <rect key="frame" x="155" y="79" width="60" height="11.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1Tb-VC-Iwo">
-                                            <rect key="frame" x="223" y="87" width="150" height="4"/>
-                                        </progressView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="atc-r8-R3Z" firstAttribute="centerY" secondItem="1Tb-VC-Iwo" secondAttribute="centerY" id="8kI-Aw-OPd"/>
-                                        <constraint firstItem="atc-r8-R3Z" firstAttribute="leading" secondItem="KU4-u7-8ee" secondAttribute="trailing" constant="28" id="EK9-Ik-QRR"/>
+                                        <constraint firstItem="atc-r8-R3Z" firstAttribute="centerY" secondItem="1Tb-VC-Iwo" secondAttribute="centerY" constant="-4.25" id="8kI-Aw-OPd"/>
+                                        <constraint firstItem="atc-r8-R3Z" firstAttribute="leading" relation="lessThanOrEqual" secondItem="KU4-u7-8ee" secondAttribute="trailing" constant="35" id="EK9-Ik-QRR"/>
                                         <constraint firstItem="1Tb-VC-Iwo" firstAttribute="leading" secondItem="KU4-u7-8ee" secondAttribute="trailing" constant="103" id="FlY-4r-LaC"/>
-                                        <constraint firstItem="atc-r8-R3Z" firstAttribute="top" secondItem="G1g-Ry-5Qz" secondAttribute="bottom" constant="19" id="GQS-8b-wPW"/>
+                                        <constraint firstItem="atc-r8-R3Z" firstAttribute="top" secondItem="G1g-Ry-5Qz" secondAttribute="bottom" constant="14.5" id="GQS-8b-wPW"/>
                                         <constraint firstItem="G1g-Ry-5Qz" firstAttribute="centerY" secondItem="KU4-u7-8ee" secondAttribute="centerY" constant="4" id="H9z-FH-L6T"/>
                                         <constraint firstAttribute="trailing" secondItem="G1g-Ry-5Qz" secondAttribute="trailing" constant="25" id="KmN-Ha-ORF"/>
                                         <constraint firstItem="G1g-Ry-5Qz" firstAttribute="centerY" secondItem="Bns-Jj-Fsv" secondAttribute="centerY" constant="4" id="O7k-EQ-ikN"/>
@@ -132,8 +132,8 @@
                                         <constraint firstItem="G1g-Ry-5Qz" firstAttribute="leading" secondItem="KU4-u7-8ee" secondAttribute="trailing" constant="25" id="dSB-HO-qt7"/>
                                         <constraint firstItem="KU4-u7-8ee" firstAttribute="leading" secondItem="Bns-Jj-Fsv" secondAttribute="leading" constant="20" symbolic="YES" id="nC2-MG-Cm1"/>
                                         <constraint firstItem="KU4-u7-8ee" firstAttribute="centerY" secondItem="Bns-Jj-Fsv" secondAttribute="centerY" id="q9h-SB-Xa2"/>
-                                        <constraint firstItem="1Tb-VC-Iwo" firstAttribute="leading" secondItem="atc-r8-R3Z" secondAttribute="trailing" constant="18" id="xpZ-VB-vD9"/>
-                                        <constraint firstAttribute="bottom" secondItem="atc-r8-R3Z" secondAttribute="bottom" constant="5" id="y7v-Oz-8hE"/>
+                                        <constraint firstItem="1Tb-VC-Iwo" firstAttribute="leading" secondItem="atc-r8-R3Z" secondAttribute="trailing" constant="8" id="xpZ-VB-vD9"/>
+                                        <constraint firstAttribute="bottom" secondItem="atc-r8-R3Z" secondAttribute="bottom" constant="9.5" id="y7v-Oz-8hE"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -149,9 +149,20 @@
                             <outlet property="delegate" destination="G8R-xF-dLI" id="VgM-gH-jEF"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="e4Q-PJ-QEj">
+                        <barButtonItem key="leftBarButtonItem" title="Следващия" id="kFs-gY-V4J">
+                            <connections>
+                                <action selector="onNavBarNextButtonClick:" destination="G8R-xF-dLI" id="0jm-6Z-dWH"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="RWb-xV-gQV"/>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="navBarLanguageButton" destination="RWb-xV-gQV" id="LLa-9t-i3R"/>
+                        <outlet property="navBarNextButton" destination="kFs-gY-V4J" id="swI-71-Xbk"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CZV-Ge-JFL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

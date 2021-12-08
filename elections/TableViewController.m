@@ -18,6 +18,8 @@
 @property Boolean resultsHidden;
 @property NSMutableDictionary<NSString *, NSNumber *>* votesDictionary;
 @property NSIndexPath* lastSelected;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *navBarNextButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *navBarLanguageButton;
 @end
 
 @implementation TableViewController
@@ -75,6 +77,8 @@
     }
     
     self.resultsHidden = YES;
+    
+    self.navigationItem.leftBarButtonItem = nil;
 }
 
 - (NSInteger)getNumberOfAppearanceByPartyName:(NSString*) partyName {
@@ -140,35 +144,38 @@
     return ROW_HEIGHT;
 }
 
+- (void)showAgeCheckAlert {
+    UIAlertController* alertAgeCheck = [UIAlertController alertControllerWithTitle:@"Проверка:" message:@"Имате ли навършени 18 години?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertController* alertUnderaged = [UIAlertController alertControllerWithTitle:@"Суек, марш!" message:@"Не си пълнолетен, за да гласуваш!" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertUnderaged addAction: [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction * action) {
+                                            [self presentViewController: alertUnderaged animated:YES completion:nil];
+    }]];
+    
+    [alertUnderaged addAction: [UIAlertAction actionWithTitle:@"Not Ok" style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction * action) {
+                                            [self presentViewController: alertUnderaged animated:YES completion:nil];
+    }]];
+    
+    [alertAgeCheck addAction: [UIAlertAction actionWithTitle:@"Да" style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction * action) {}]];
+    
+    [alertAgeCheck addAction: [UIAlertAction actionWithTitle:@"Не" style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction * action) {
+                                            [self presentViewController: alertUnderaged animated:YES completion:nil];
+                                                //boring exit(0);
+                                            }]];
+    
+    [self presentViewController:alertAgeCheck animated:YES completion:nil];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     if (!self.appearedOnce) {
-        UIAlertController* alertAgeCheck = [UIAlertController alertControllerWithTitle:@"Проверка:" message:@"Имате ли навършени 18 години?" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertController* alertUnderaged = [UIAlertController alertControllerWithTitle:@"Суек, марш!" message:@"Не си пълнолетен, за да гласуваш!" preferredStyle:UIAlertControllerStyleAlert];
-        
-        [alertUnderaged addAction: [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
-                                                handler:^(UIAlertAction * action) {
-                                                [self presentViewController: alertUnderaged animated:YES completion:nil];
-        }]];
-        
-        [alertUnderaged addAction: [UIAlertAction actionWithTitle:@"Not Ok" style:UIAlertActionStyleDefault
-                                                handler:^(UIAlertAction * action) {
-                                                [self presentViewController: alertUnderaged animated:YES completion:nil];
-        }]];
-        
-        [alertAgeCheck addAction: [UIAlertAction actionWithTitle:@"Да" style:UIAlertActionStyleDefault
-                                                handler:^(UIAlertAction * action) {}]];
-        
-        [alertAgeCheck addAction: [UIAlertAction actionWithTitle:@"Не" style:UIAlertActionStyleDefault
-                                                handler:^(UIAlertAction * action) {
-                                                [self presentViewController: alertUnderaged animated:YES completion:nil];
-                                                    //boring exit(0);
-                                                }]];
-        
-        [self presentViewController:alertAgeCheck animated:YES completion:nil];
+        [self showAgeCheckAlert];
+        self.appearedOnce = YES;
     }
-    
-    self.appearedOnce = YES;
 }
 
 - (void) selectParty:(NSIndexPath*)indexPath {
@@ -336,14 +343,22 @@
     [self deselectParty: self.lastSelected];
     NSIndexPath* indexPathTop = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView scrollToRowAtIndexPath:indexPathTop atScrollPosition: UITableViewScrollPositionTop animated:YES];
-    self.appearedOnce = false;
+    self.appearedOnce = NO;
     self.resultsHidden = YES;
+    self.navigationItem.leftBarButtonItem = nil;
     [self.tableView reloadData];
 }
 
 - (void)makeResultsVisible {
     self.resultsHidden = NO;
+    self.navigationItem.leftBarButtonItem = self.navBarNextButton;
+    self.tableView.allowsSelection = NO;
     [self.tableView reloadData];
+}
+- (IBAction)onNavBarNextButtonClick:(id)sender {
+    self.tableView.allowsSelection = YES;
+    [self shouldRefreshScreen];
+    [self showAgeCheckAlert];
 }
 
 
