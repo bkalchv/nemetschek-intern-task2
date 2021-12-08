@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4209B7E12760DDF5001030C0 /* LanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4209B7E02760DDF5001030C0 /* LanguageManager.m */; };
 		424BB341275911C7004DC494 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424BB340275911C7004DC494 /* AlertController.m */; };
 		429FAC932758F000004BB575 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 429FAC922758F000004BB575 /* TableViewController.m */; };
 		429FAC962758F256004BB575 /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 429FAC952758F256004BB575 /* Party.m */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4209B7DF2760DDF5001030C0 /* LanguageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageManager.h; sourceTree = "<group>"; };
+		4209B7E02760DDF5001030C0 /* LanguageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LanguageManager.m; sourceTree = "<group>"; };
 		424BB33F275911C7004DC494 /* AlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
 		424BB340275911C7004DC494 /* AlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
 		429FAC912758F000004BB575 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
@@ -97,6 +100,8 @@
 				429FAC952758F256004BB575 /* Party.m */,
 				424BB33F275911C7004DC494 /* AlertController.h */,
 				424BB340275911C7004DC494 /* AlertController.m */,
+				4209B7DF2760DDF5001030C0 /* LanguageManager.h */,
+				4209B7E02760DDF5001030C0 /* LanguageManager.m */,
 			);
 			path = elections;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				42F0C40C275E26C300631EE5 /* PartyTableViewCell.m in Sources */,
 				42BD385C2758CB6700C011C9 /* ViewController.m in Sources */,
 				42BD38562758CB6700C011C9 /* AppDelegate.m in Sources */,
+				4209B7E12760DDF5001030C0 /* LanguageManager.m in Sources */,
 				42BD38672758CB6900C011C9 /* main.m in Sources */,
 				429FAC932758F000004BB575 /* TableViewController.m in Sources */,
 				42BD38592758CB6700C011C9 /* SceneDelegate.m in Sources */,

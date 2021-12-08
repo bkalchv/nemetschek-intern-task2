@@ -156,7 +156,7 @@
                                 <action selector="onNavBarNextButtonClick:" destination="G8R-xF-dLI" id="0jm-6Z-dWH"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="RWb-xV-gQV"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="langauge" id="RWb-xV-gQV"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -243,6 +243,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="langauge" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

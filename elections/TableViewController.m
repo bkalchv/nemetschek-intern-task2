@@ -11,6 +11,7 @@
 #import "TableViewController.h"
 #import "Party.h"
 #import "PartyTableViewCell.h"
+#import "LanguageManager.h"
 
 @interface TableViewController()
 @property (strong, nonatomic) NSArray<Party*>* tableData;
@@ -122,8 +123,12 @@
     NSString* imageFilename = [NSString stringWithFormat: @"%ld", (long) currentParty.numberOfAppearance];
     
     cell.partyImage.image = [UIImage imageNamed: imageFilename];
-    cell.partyContent.text = [NSString stringWithFormat: @"%i. %@", [self.tableData objectAtIndex:indexPath.row].numberOfAppearance, [self.tableData objectAtIndex:indexPath.row].name];
-    
+    if (indexPath.row == [tableView numberOfRowsInSection: indexPath.section] - 1) {
+        cell.partyContent.text = [NSString stringWithFormat: @"%li. %@", (long) [self.tableData objectAtIndex:indexPath.row].numberOfAppearance, [LanguageManager.sharedLanguageManager stringForKey:@"Не подкрепям никого"]];
+    } else {
+        cell.partyContent.text = [NSString stringWithFormat: @"%li. %@", (long) [self.tableData objectAtIndex:indexPath.row].numberOfAppearance, [self.tableData objectAtIndex:indexPath.row].name];
+    }
+   
     cell.progressBarVoteResult.progress = currentPartyVotesShare;
     cell.percentageLabel.text = [NSString stringWithFormat: @"%.2f%%", (double) currentPartyVotesShare * 100];
     
@@ -134,7 +139,6 @@
         cell.progressBarVoteResult.hidden = NO;
         cell.percentageLabel.hidden = NO;
     }
-
     
     return cell;
 }
@@ -145,7 +149,7 @@
 }
 
 - (void)showAgeCheckAlert {
-    UIAlertController* alertAgeCheck = [UIAlertController alertControllerWithTitle:@"Проверка:" message:@"Имате ли навършени 18 години?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController* alertAgeCheck = [UIAlertController alertControllerWithTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Проверка"] message: [LanguageManager.sharedLanguageManager stringForKey:@"Имате ли навършени 18 години?"] preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertController* alertUnderaged = [UIAlertController alertControllerWithTitle:@"Суек, марш!" message:@"Не си пълнолетен, за да гласуваш!" preferredStyle:UIAlertControllerStyleAlert];
     
@@ -159,10 +163,10 @@
                                             [self presentViewController: alertUnderaged animated:YES completion:nil];
     }]];
     
-    [alertAgeCheck addAction: [UIAlertAction actionWithTitle:@"Да" style:UIAlertActionStyleDefault
+    [alertAgeCheck addAction: [UIAlertAction actionWithTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Да"] style:UIAlertActionStyleDefault
                                             handler:^(UIAlertAction * action) {}]];
     
-    [alertAgeCheck addAction: [UIAlertAction actionWithTitle:@"Не" style:UIAlertActionStyleDefault
+    [alertAgeCheck addAction: [UIAlertAction actionWithTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Не"] style:UIAlertActionStyleDefault
                                             handler:^(UIAlertAction * action) {
                                             [self presentViewController: alertUnderaged animated:YES completion:nil];
                                                 //boring exit(0);
@@ -287,9 +291,9 @@
     NSInteger numberOfAttendanceITN = [self getNumberOfAppearanceByPartyName:@"Има такъв народ"];
     Party* partyITN = self.tableData[numberOfAttendanceITN - 1];
     
-    UIAlertController* alertVoteCheck = [UIAlertController alertControllerWithTitle: [NSString stringWithFormat: @"Отбелязахте: %i. %@", selectedPartyObject.numberOfAppearance, selectedPartyObject.name] message:@"Сигурни ли сте, че това е Вашият избор?"  preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController* alertVoteCheck = [UIAlertController alertControllerWithTitle: [NSString stringWithFormat: @"%@: %i. %@", [LanguageManager.sharedLanguageManager stringForKey:@"Отбелязахте"], selectedPartyObject.numberOfAppearance, selectedPartyObject.name] message: [LanguageManager.sharedLanguageManager stringForKey:@"Сигурни ли сте, че това е Вашият избор?"] preferredStyle:UIAlertControllerStyleAlert];
     
-    [alertVoteCheck addAction: [UIAlertAction actionWithTitle:@"Да" style:UIAlertActionStyleDefault handler:^ (UIAlertAction* action) {
+    [alertVoteCheck addAction: [UIAlertAction actionWithTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Да"] style:UIAlertActionStyleDefault handler:^ (UIAlertAction* action) {
         if ([self shouldAddRandomVoteForeITN]) {
             [self incrementVotesCount: partyITN];
         } else {
@@ -304,7 +308,7 @@
         [self presentViewController:votedSuccessfullyVC animated:YES completion:nil];
     }]];
     
-    [alertVoteCheck addAction: [UIAlertAction actionWithTitle:@"Не" style:UIAlertActionStyleDestructive handler:^ (UIAlertAction* action) {
+    [alertVoteCheck addAction: [UIAlertAction actionWithTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Не"] style:UIAlertActionStyleDestructive handler:^ (UIAlertAction* action) {
         [self deselectParty: indexPath];
         [tableView reloadData];
     }]];
@@ -339,7 +343,7 @@
     return [self.tableData count];
 }
 
-- (void)shouldRefreshScreen {
+- (void)refreshScreen {
     [self deselectParty: self.lastSelected];
     NSIndexPath* indexPathTop = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView scrollToRowAtIndexPath:indexPathTop atScrollPosition: UITableViewScrollPositionTop animated:YES];
@@ -357,7 +361,7 @@
 }
 - (IBAction)onNavBarNextButtonClick:(id)sender {
     self.tableView.allowsSelection = YES;
-    [self shouldRefreshScreen];
+    [self refreshScreen];
     [self showAgeCheckAlert];
 }
 

@@ -38,7 +38,7 @@
 }
 
 - (IBAction)onNextButtonClick:(id)sender {
-    [self.delegate shouldRefreshScreen];
+    [self.delegate refreshScreen];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

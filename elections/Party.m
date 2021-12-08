@@ -6,14 +6,16 @@
 //
 
 #import "Party.h"
-
+@interface Party ()
+@property (assign) int numberOfAppearance;
+@end
 @implementation Party
 //- (instancetype)init {
 //    self = [self initWithName:@"" numberOfAppearance: 0];
 //    return self;
 //}
 - (instancetype)initWithName:(NSString *)name
-          numberOfAppearance:(NSInteger)numberOfAppearance {
+          numberOfAppearance:(int)numberOfAppearance {
     self = [super init];
     if (self) {
         self.name = name;

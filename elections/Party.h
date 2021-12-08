@@ -11,11 +11,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Party : NSObject
 @property (nonatomic, strong) NSString* name;
-@property NSInteger numberOfAppearance;
+@property (readonly) int numberOfAppearance;
 @property Boolean isChecked;
 @property NSNumber* votes;
 - (instancetype)initWithName:(NSString *) name
-          numberOfAppearance:(NSInteger) numberOfAppearance;
+          numberOfAppearance:(int) numberOfAppearance;
 
 
 @end
