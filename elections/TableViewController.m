@@ -15,7 +15,8 @@
 
 @interface TableViewController()
 @property (strong, nonatomic) NSArray<Party*>* tableData;
-@property Boolean appearedOnce;
+@property Boolean languageSheetsAppearedOnce;
+@property Boolean ageAlertAppearedOnce;
 @property Boolean resultsHidden;
 @property NSMutableDictionary<NSString *, NSNumber *>* votesDictionary;
 @property NSIndexPath* lastSelected;
@@ -68,7 +69,9 @@
     [[Party alloc] initWithName: @"Пряка демокрация" numberOfAppearance: 30],
     [[Party alloc] initWithName: @"Не подкрепям никого" numberOfAppearance: 31]];
     
-    self.appearedOnce = NO;
+    self.languageSheetsAppearedOnce = NO;
+    
+    self.ageAlertAppearedOnce = NO;
     
     self.votesDictionary = [[NSMutableDictionary alloc] init];
     
@@ -166,7 +169,7 @@
     [alertAgeCheck addAction: [UIAlertAction actionWithTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Да"] style:UIAlertActionStyleDefault
                                             handler:^(UIAlertAction * action) {}]];
     
-    [alertAgeCheck addAction: [UIAlertAction actionWithTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Не"] style:UIAlertActionStyleDefault
+    [alertAgeCheck addAction: [UIAlertAction actionWithTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Не"] style:UIAlertActionStyleDestructive
                                             handler:^(UIAlertAction * action) {
                                             [self presentViewController: alertUnderaged animated:YES completion:nil];
                                                 //boring exit(0);
@@ -176,9 +179,9 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if (!self.appearedOnce) {
+    if (!self.languageSheetsAppearedOnce) {
         [self showLanguageActionSheetController];
-        self.appearedOnce = YES;
+        self.languageSheetsAppearedOnce = YES;
     }
 }
 
@@ -347,7 +350,6 @@
     [self deselectParty: self.lastSelected];
     NSIndexPath* indexPathTop = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView scrollToRowAtIndexPath:indexPathTop atScrollPosition: UITableViewScrollPositionTop animated:YES];
-    self.appearedOnce = NO;
     self.resultsHidden = YES;
     self.navigationItem.leftBarButtonItem = nil;
     [self.tableView reloadData];
@@ -355,6 +357,8 @@
 
 - (void)makeResultsVisible {
     self.resultsHidden = NO;
+    self.ageAlertAppearedOnce = YES;
+    self.languageSheetsAppearedOnce = YES;
     [self.navBarNextButton setTitle: [LanguageManager.sharedLanguageManager stringForKey: @"Следващия"]];
     self.navigationItem.leftBarButtonItem = self.navBarNextButton;
     self.tableView.allowsSelection = NO;
@@ -363,6 +367,8 @@
 
 - (IBAction)onNavBarNextButtonClick:(id)sender {
     self.tableView.allowsSelection = YES;
+    self.languageSheetsAppearedOnce = NO;
+    self.ageAlertAppearedOnce = NO;
     [self refreshScreen];
     [self showLanguageActionSheetController];
 }
@@ -372,26 +378,37 @@
     
     [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Български" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageBulgarian];
-        [self showAgeCheckAlert];
+        if (!self.ageAlertAppearedOnce) {
+            [self showAgeCheckAlert];
+            self.ageAlertAppearedOnce = YES;
+        }
     }]];
     
     [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Türk" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageTurkish];
-        [self showAgeCheckAlert];
+        if (!self.ageAlertAppearedOnce) {
+            [self showAgeCheckAlert];
+            self.ageAlertAppearedOnce = YES;
+        }
     }]];
     
     [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"English" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageEnglish];
-        [self showAgeCheckAlert];
+        if (!self.ageAlertAppearedOnce) {
+            [self showAgeCheckAlert];
+            self.ageAlertAppearedOnce = YES;
+        }
     }]];
     
     [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Deutsch" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageGerman];
-        [self showAgeCheckAlert];
+        if (!self.ageAlertAppearedOnce) {
+            [self showAgeCheckAlert];
+            self.ageAlertAppearedOnce = YES;
+        }
     }]];
     
     [self presentViewController: languageActionSheet animated:YES completion:^(void) {
-          [self.tableView reloadData];
     }];
 }
 
