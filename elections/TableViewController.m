@@ -12,12 +12,14 @@
 #import "Party.h"
 #import "PartyTableViewCell.h"
 #import "LanguageManager.h"
+#import "AgeCheckViewController.h"
 
 @interface TableViewController()
 @property (strong, nonatomic) NSArray<Party*>* tableData;
 @property BOOL languageSheetsAppearedOnce;
 @property BOOL ageAlertAppearedOnce;
 @property BOOL resultsHidden;
+@property BOOL ageCheckDismissedManually;
 @property NSMutableDictionary<NSString *, NSNumber *>* votesDictionary;
 @property NSIndexPath* lastSelected;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *navBarNextButton;
@@ -83,6 +85,8 @@
     self.resultsHidden = YES;
     
     self.navigationItem.leftBarButtonItem = nil;
+    
+    self.ageCheckDismissedManually = false;
 }
 
 - (NSInteger)getNumberOfAppearanceByPartyName:(NSString*) partyName {
@@ -152,6 +156,11 @@
 }
 
 - (void)showAgeCheckerViewController {
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    AgeCheckViewController* ageCheckVC = [storyboard instantiateViewControllerWithIdentifier:@"AgeCheckViewController"];
+    ageCheckVC.delegate = self;
+    [self presentViewController:ageCheckVC animated:YES completion:nil];
+    
 //    UIViewController* ageCheckerVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
 //    [ageCheckerVC setTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Имате ли навършени 18 години?"]];
 //    CGSize ageCheckerVCSize = CGSizeMake(self.view.frame.size.width, 400);
@@ -159,13 +168,11 @@
 //    ageCheckerVC.view.backgroundColor = UIColor.blackColor;
 //    ageCheckerVC.view.size
 //    [ageCheckerVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
-//    
+//
 //    [self presentViewController:ageCheckerVC animated:YES completion: nil];
 }
 
-- (void)showAgeCheckAlert {
-    UIAlertController* alertAgeCheck = [UIAlertController alertControllerWithTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Проверка"] message: [LanguageManager.sharedLanguageManager stringForKey:@"Имате ли навършени 18 години?"] preferredStyle:UIAlertControllerStyleAlert];
-    
+- (void)showUnderAgedAlert {
     UIAlertController* alertUnderaged = [UIAlertController alertControllerWithTitle:@"Суек, марш!" message:@"Не си пълнолетен, за да гласуваш!" preferredStyle:UIAlertControllerStyleAlert];
     
     [alertUnderaged addAction: [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
@@ -178,24 +185,31 @@
                                             [self presentViewController: alertUnderaged animated:YES completion:nil];
     }]];
     
+    [self presentViewController: alertUnderaged animated:YES completion:nil];
+}
+
+- (void)showAgeCheckAlert {
+    UIAlertController* alertAgeCheck = [UIAlertController alertControllerWithTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Проверка"] message: [LanguageManager.sharedLanguageManager stringForKey:@"Имате ли навършени 18 години?"] preferredStyle:UIAlertControllerStyleAlert];
+    
     [alertAgeCheck addAction: [UIAlertAction actionWithTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Да"] style:UIAlertActionStyleDefault
                                             handler:^(UIAlertAction * action) {}]];
     
     [alertAgeCheck addAction: [UIAlertAction actionWithTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Не"] style:UIAlertActionStyleDestructive
                                             handler:^(UIAlertAction * action) {
-                                            [self presentViewController: alertUnderaged animated:YES completion:nil];
-                                                //boring exit(0);
-                                            }]];
+                                            [self showUnderAgedAlert];
+    }]];
     
     [self presentViewController:alertAgeCheck animated:YES completion:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if (!self.languageSheetsAppearedOnce) {
-        [self showLanguageActionSheetController];
-        self.languageSheetsAppearedOnce = YES;
-    }
+    
+    [self showAgeCheckerViewController];
+//    if (!self.languageSheetsAppearedOnce) {
+//        [self showLanguageActionSheetController];
+//        self.languageSheetsAppearedOnce = YES;
+//    }
 }
 
 - (void) selectParty:(NSIndexPath*)indexPath {
@@ -428,5 +442,15 @@
 - (IBAction)onNavBarLanguageButtonClick:(id)sender {
     [self showLanguageActionSheetController];
 }
+
+- (void)didDismissViewController:(nonnull UIViewController *)presentingVc didManually:(BOOL) didManually {
+    if (didManually) {
+        [self showUnderAgedAlert];
+    } else {
+        [self dismissViewControllerAnimated:presentingVc completion:nil];
+    }
+}
+
+
 @end
 

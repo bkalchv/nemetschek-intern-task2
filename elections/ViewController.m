@@ -12,8 +12,6 @@
 
 @implementation ViewController
 
-- (IBAction)onButtonVotePress:(id)sender {
-}
 
 @end
 	

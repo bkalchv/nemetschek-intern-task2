@@ -9,8 +9,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AgeCheckViewController : UIViewController
+@protocol AgeCheckViewControllerDelegate <NSObject>
+-(void)didDismissViewController:(UIViewController*)presentingVc didManually:(BOOL)didManually;
+@end
 
+@interface AgeCheckViewController : UIViewController
+@property (nonatomic, weak) id <AgeCheckViewControllerDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

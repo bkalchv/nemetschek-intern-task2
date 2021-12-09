@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 #import "VotedSuccessfullyViewController.h"
+#import "AgeCheckViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TableViewController : UITableViewController <VotedSuccessfullyViewControllerDelegate>
+@interface TableViewController : UITableViewController <VotedSuccessfullyViewControllerDelegate, AgeCheckViewControllerDelegate>
 @end
 
 NS_ASSUME_NONNULL_END
