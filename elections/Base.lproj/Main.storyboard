@@ -63,7 +63,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="28.985507246376812" y="83.705357142857139"/>
+            <point key="canvasLocation" x="51" y="-592"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iEu-yy-L7S">
@@ -79,7 +79,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GMv-J5-xe3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2578" y="161"/>
+            <point key="canvasLocation" x="-2646" y="161"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="Rdy-9W-JAS">
@@ -170,7 +170,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CZV-Ge-JFL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1755.072463768116" y="160.71428571428569"/>
+            <point key="canvasLocation" x="-1710" y="161"/>
         </scene>
         <!--Voted Successfully View Controller-->
         <scene sceneID="Acb-WQ-n6F">
@@ -247,11 +247,79 @@
             </objects>
             <point key="canvasLocation" x="-904" y="161"/>
         </scene>
+        <!--Age Check View Controller-->
+        <scene sceneID="ZvK-XM-pEZ">
+            <objects>
+                <viewController id="p9F-xw-21t" customClass="AgeCheckViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4AX-9r-3cp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrO-DB-PrB">
+                                <rect key="frame" x="2" y="44" width="410" height="140"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opw-V4-1wf">
+                                        <rect key="frame" x="269.5" y="90" width="90.5" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Не"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имате ли навършени 18 години?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eof-zf-Zdl">
+                                        <rect key="frame" x="55" y="40" width="300" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNr-S8-dgv">
+                                        <rect key="frame" x="50" y="90" width="90.5" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Да"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="7oA-JX-45b"/>
+                                    <constraint firstItem="opw-V4-1wf" firstAttribute="top" secondItem="Eof-zf-Zdl" secondAttribute="bottom" constant="26" id="HXe-EC-fRE"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="140" id="JNq-xf-MIr"/>
+                                    <constraint firstItem="HNr-S8-dgv" firstAttribute="top" secondItem="Eof-zf-Zdl" secondAttribute="bottom" constant="26" id="NL5-bh-VWV"/>
+                                    <constraint firstAttribute="trailing" secondItem="opw-V4-1wf" secondAttribute="trailing" constant="50" id="cBn-7A-4d2"/>
+                                    <constraint firstItem="Eof-zf-Zdl" firstAttribute="top" secondItem="hrO-DB-PrB" secondAttribute="top" constant="40" id="dSl-67-g0b"/>
+                                    <constraint firstItem="Eof-zf-Zdl" firstAttribute="centerX" secondItem="hrO-DB-PrB" secondAttribute="centerX" id="fHf-5E-DSI"/>
+                                    <constraint firstItem="opw-V4-1wf" firstAttribute="leading" secondItem="HNr-S8-dgv" secondAttribute="trailing" constant="129" id="fSE-Mh-Tj6"/>
+                                    <constraint firstItem="HNr-S8-dgv" firstAttribute="leading" secondItem="hrO-DB-PrB" secondAttribute="leading" constant="50" id="gA0-ib-RDi"/>
+                                    <constraint firstItem="HNr-S8-dgv" firstAttribute="height" secondItem="opw-V4-1wf" secondAttribute="height" id="j9q-0r-FdQ"/>
+                                    <constraint firstItem="HNr-S8-dgv" firstAttribute="width" secondItem="opw-V4-1wf" secondAttribute="width" id="ldv-wB-nnp"/>
+                                    <constraint firstItem="opw-V4-1wf" firstAttribute="leading" secondItem="HNr-S8-dgv" secondAttribute="trailing" constant="129" id="wrb-wf-5tk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="z2N-Ib-QBc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hrO-DB-PrB" firstAttribute="leading" secondItem="z2N-Ib-QBc" secondAttribute="leading" constant="2" id="0FO-RF-ERs"/>
+                            <constraint firstAttribute="trailing" secondItem="hrO-DB-PrB" secondAttribute="trailing" constant="2" id="GDD-GK-L0M"/>
+                            <constraint firstItem="hrO-DB-PrB" firstAttribute="top" secondItem="z2N-Ib-QBc" secondAttribute="top" id="NDb-0z-Bvd"/>
+                            <constraint firstItem="z2N-Ib-QBc" firstAttribute="bottom" secondItem="hrO-DB-PrB" secondAttribute="bottom" constant="678" id="phh-Rs-hcR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ageCheckLabel" destination="Eof-zf-Zdl" id="NIt-Ok-XUo"/>
+                        <outlet property="ageCheckNoButton" destination="opw-V4-1wf" id="dwb-WF-1fr"/>
+                        <outlet property="ageCheckViewContent" destination="hrO-DB-PrB" id="SxB-IR-a1R"/>
+                        <outlet property="ageCheckYesButton" destination="HNr-S8-dgv" id="cPS-hg-hoD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7gt-jC-FIp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1654" y="-532"/>
+        </scene>
     </scenes>
     <resources>
         <image name="langauge" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

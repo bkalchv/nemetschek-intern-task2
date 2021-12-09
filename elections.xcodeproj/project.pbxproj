@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4209B7E12760DDF5001030C0 /* LanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4209B7E02760DDF5001030C0 /* LanguageManager.m */; };
 		424BB341275911C7004DC494 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 424BB340275911C7004DC494 /* AlertController.m */; };
+		42691457276253790041212C /* AgeCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42691456276253790041212C /* AgeCheckViewController.m */; };
 		429FAC932758F000004BB575 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 429FAC922758F000004BB575 /* TableViewController.m */; };
 		429FAC962758F256004BB575 /* Party.m in Sources */ = {isa = PBXBuildFile; fileRef = 429FAC952758F256004BB575 /* Party.m */; };
 		42BD38562758CB6700C011C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BD38552758CB6700C011C9 /* AppDelegate.m */; };
@@ -27,6 +28,8 @@
 		4209B7E02760DDF5001030C0 /* LanguageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LanguageManager.m; sourceTree = "<group>"; };
 		424BB33F275911C7004DC494 /* AlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
 		424BB340275911C7004DC494 /* AlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
+		42691455276253790041212C /* AgeCheckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgeCheckViewController.h; sourceTree = "<group>"; };
+		42691456276253790041212C /* AgeCheckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AgeCheckViewController.m; sourceTree = "<group>"; };
 		429FAC912758F000004BB575 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		429FAC922758F000004BB575 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		429FAC942758F256004BB575 /* Party.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Party.h; sourceTree = "<group>"; };
@@ -92,6 +95,8 @@
 				42BD385A2758CB6700C011C9 /* ViewController.h */,
 				42BD385B2758CB6700C011C9 /* ViewController.m */,
 				42BD385D2758CB6700C011C9 /* Main.storyboard */,
+				42691455276253790041212C /* AgeCheckViewController.h */,
+				42691456276253790041212C /* AgeCheckViewController.m */,
 				42BD38602758CB6900C011C9 /* Assets.xcassets */,
 				42BD38622758CB6900C011C9 /* LaunchScreen.storyboard */,
 				42BD38652758CB6900C011C9 /* Info.plist */,
@@ -177,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				424BB341275911C7004DC494 /* AlertController.m in Sources */,
+				42691457276253790041212C /* AgeCheckViewController.m in Sources */,
 				429FAC962758F256004BB575 /* Party.m in Sources */,
 				42F0C40C275E26C300631EE5 /* PartyTableViewCell.m in Sources */,
 				42BD385C2758CB6700C011C9 /* ViewController.m in Sources */,

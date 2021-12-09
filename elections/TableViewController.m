@@ -15,9 +15,9 @@
 
 @interface TableViewController()
 @property (strong, nonatomic) NSArray<Party*>* tableData;
-@property Boolean languageSheetsAppearedOnce;
-@property Boolean ageAlertAppearedOnce;
-@property Boolean resultsHidden;
+@property BOOL languageSheetsAppearedOnce;
+@property BOOL ageAlertAppearedOnce;
+@property BOOL resultsHidden;
 @property NSMutableDictionary<NSString *, NSNumber *>* votesDictionary;
 @property NSIndexPath* lastSelected;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *navBarNextButton;
@@ -140,7 +140,7 @@
         cell.percentageLabel.hidden = YES;
     } else {
         cell.progressBarVoteResult.hidden = NO;
-        cell.percentageLabel.hidden = NO;
+        if (currentPartyVotesShare >= 0.1) cell.percentageLabel.hidden = NO;
     }
     
     return cell;
@@ -149,6 +149,18 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return ROW_HEIGHT;
+}
+
+- (void)showAgeCheckerViewController {
+//    UIViewController* ageCheckerVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
+//    [ageCheckerVC setTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Имате ли навършени 18 години?"]];
+//    CGSize ageCheckerVCSize = CGSizeMake(self.view.frame.size.width, 400);
+//    [ageCheckerVC setPreferredContentSize: ageCheckerVCSize];
+//    ageCheckerVC.view.backgroundColor = UIColor.blackColor;
+//    ageCheckerVC.view.size
+//    [ageCheckerVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+//    
+//    [self presentViewController:ageCheckerVC animated:YES completion: nil];
 }
 
 - (void)showAgeCheckAlert {
@@ -179,6 +191,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     if (!self.languageSheetsAppearedOnce) {
         [self showLanguageActionSheetController];
         self.languageSheetsAppearedOnce = YES;
@@ -348,8 +361,10 @@
 
 - (void)refreshScreen {
     [self deselectParty: self.lastSelected];
+    self.languageSheetsAppearedOnce = NO;
+    self.ageAlertAppearedOnce = NO;
     NSIndexPath* indexPathTop = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPathTop atScrollPosition: UITableViewScrollPositionTop animated:YES];
+    [self.tableView scrollToRowAtIndexPath:indexPathTop atScrollPosition: UITableViewScrollPositionTop animated:NO];
     self.resultsHidden = YES;
     self.navigationItem.leftBarButtonItem = nil;
     [self.tableView reloadData];
@@ -357,8 +372,6 @@
 
 - (void)makeResultsVisible {
     self.resultsHidden = NO;
-    self.ageAlertAppearedOnce = YES;
-    self.languageSheetsAppearedOnce = YES;
     [self.navBarNextButton setTitle: [LanguageManager.sharedLanguageManager stringForKey: @"Следващия"]];
     self.navigationItem.leftBarButtonItem = self.navBarNextButton;
     self.tableView.allowsSelection = NO;
@@ -367,10 +380,8 @@
 
 - (IBAction)onNavBarNextButtonClick:(id)sender {
     self.tableView.allowsSelection = YES;
-    self.languageSheetsAppearedOnce = NO;
-    self.ageAlertAppearedOnce = NO;
     [self refreshScreen];
-    [self showLanguageActionSheetController];
+    //[self viewDidAppear: true]; // legit?
 }
 
 - (void)showLanguageActionSheetController{
@@ -379,7 +390,7 @@
     [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Български" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageBulgarian];
         if (!self.ageAlertAppearedOnce) {
-            [self showAgeCheckAlert];
+            [self showAgeCheckerViewController];
             self.ageAlertAppearedOnce = YES;
         }
     }]];
@@ -407,6 +418,8 @@
             self.ageAlertAppearedOnce = YES;
         }
     }]];
+    
+    if (self.languageSheetsAppearedOnce) [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
     
     [self presentViewController: languageActionSheet animated:YES completion:^(void) {
     }];
