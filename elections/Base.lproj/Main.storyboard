@@ -255,35 +255,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opw-V4-1wf">
-                                <rect key="frame" x="266" y="464" width="90.5" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opw-V4-1wf">
+                                <rect key="frame" x="248" y="464" width="101" height="40"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Не"/>
                                 <connections>
                                     <action selector="onAgeCheckNoButtonClick:" destination="p9F-xw-21t" eventType="touchUpInside" id="bbR-tY-U7y"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Имате ли навършени 18 години?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eof-zf-Zdl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имате ли навършени 18 години?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eof-zf-Zdl">
                                 <rect key="frame" x="57" y="314" width="300" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNr-S8-dgv">
-                                <rect key="frame" x="57" y="464" width="90.5" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNr-S8-dgv">
+                                <rect key="frame" x="65" y="464" width="100" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="8YY-Kj-TeU"/>
+                                    <constraint firstAttribute="height" constant="40" id="mNS-a8-4es"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Да"/>
                                 <connections>
                                     <action selector="onAgeCheckYesButtonClick:" destination="p9F-xw-21t" eventType="touchUpInside" id="CQY-Ex-lhz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20l-zP-tSn">
+                                <rect key="frame" x="346" y="75" width="48" height="38"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="langauge"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="z2N-Ib-QBc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="opw-V4-1wf" firstAttribute="top" secondItem="Eof-zf-Zdl" secondAttribute="bottom" constant="126" id="0Ai-cR-r9u"/>
+                            <constraint firstItem="20l-zP-tSn" firstAttribute="leading" secondItem="z2N-Ib-QBc" secondAttribute="leading" constant="346" id="4yu-E4-nkl"/>
+                            <constraint firstItem="HNr-S8-dgv" firstAttribute="leading" secondItem="z2N-Ib-QBc" secondAttribute="leading" constant="65" id="Hyw-GL-lYj"/>
+                            <constraint firstItem="HNr-S8-dgv" firstAttribute="height" secondItem="opw-V4-1wf" secondAttribute="height" id="PiQ-ke-zsg"/>
+                            <constraint firstItem="HNr-S8-dgv" firstAttribute="width" secondItem="opw-V4-1wf" secondAttribute="width" multiplier="0.988235" id="bvu-5q-YuZ"/>
+                            <constraint firstItem="Eof-zf-Zdl" firstAttribute="centerX" secondItem="z2N-Ib-QBc" secondAttribute="centerX" id="cv3-rl-QFQ"/>
+                            <constraint firstItem="z2N-Ib-QBc" firstAttribute="trailing" secondItem="20l-zP-tSn" secondAttribute="trailing" constant="20" id="fB5-Ha-eps"/>
+                            <constraint firstItem="20l-zP-tSn" firstAttribute="top" secondItem="z2N-Ib-QBc" secondAttribute="top" constant="31" id="hxP-7v-ELp"/>
+                            <constraint firstItem="z2N-Ib-QBc" firstAttribute="trailing" secondItem="opw-V4-1wf" secondAttribute="trailing" constant="65" id="oYM-XU-EsH"/>
+                            <constraint firstItem="Eof-zf-Zdl" firstAttribute="top" secondItem="z2N-Ib-QBc" secondAttribute="top" constant="270" id="rhB-fS-6OZ"/>
+                            <constraint firstItem="HNr-S8-dgv" firstAttribute="top" secondItem="Eof-zf-Zdl" secondAttribute="bottom" constant="126" id="wYA-1o-Df5"/>
+                            <constraint firstItem="z2N-Ib-QBc" firstAttribute="bottom" secondItem="Eof-zf-Zdl" secondAttribute="bottom" constant="475" id="zJI-fK-gUP"/>
+                            <constraint firstItem="opw-V4-1wf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HNr-S8-dgv" secondAttribute="trailing" constant="8" symbolic="YES" id="zuZ-uP-crG"/>
+                        </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="ageCheckLabel" destination="Eof-zf-Zdl" id="NIt-Ok-XUo"/>
                         <outlet property="ageCheckNoButton" destination="opw-V4-1wf" id="dwb-WF-1fr"/>
