@@ -14,6 +14,8 @@
 #import "LanguageManager.h"
 #import "AgeCheckViewController.h"
 
+#import <AudioToolbox/AudioServices.h>
+
 @interface TableViewController()
 @property (strong, nonatomic) NSArray<Party*>* tableData;
 @property BOOL ageCheckVCAppearedOnce;
@@ -216,7 +218,7 @@
 //            }];
 //        }];
 //    }];
-    
+            
             [UIView animateKeyframesWithDuration:2.0 delay:0.0 options:UIViewKeyframeAnimationOptionAutoreverse animations:^{
             self.view.userInteractionEnabled = NO;
             [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 animations:^{
@@ -225,6 +227,7 @@
                                           delay:0.0
                                         options:UIViewAnimationOptionAllowUserInteraction
                                      animations:^void() {
+                                        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);   
                                         [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.lightGrayColor;}
                                      completion:^(BOOL finished) {
 
@@ -267,6 +270,7 @@
                 });
             }];
         } completion:nil];
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
