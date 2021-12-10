@@ -43,7 +43,9 @@ static LanguageManager* sharedLanguageManager;
           @"Виж резултати": @"Sonuçları göster",
           @"Проверка": @"Kontrol etmek",
           @"Имате ли навършени 18 години?": @"En az 18 yaşında mısın?",
-          @"Избери език": @"bir dil seç"
+          @"Избери език": @"bir dil seç",
+          @"Суек, марш!": @"çekip gitmek",
+          @"Не си пълнолетен, за да гласуваш!": @"Oy vermek için yasal yaşta değilsiniz!"
       };
       self.germanLanguage = @{
           @"Не подкрепям никого": @"Ich unterstuetze niemanden",
@@ -57,7 +59,9 @@ static LanguageManager* sharedLanguageManager;
           @"Виж резултати": @"Ergebnisse ansehen",
           @"Проверка": @"Überprüfung",
           @"Имате ли навършени 18 години?" : @"Sind Sie mindestens 18 Jahre alt?",
-          @"Избери език": @"Sprachenauswahl"
+          @"Избери език": @"Sprachenauswahl",
+          @"Суек, марш!": @"Geh weg!",
+          @"Не си пълнолетен, за да гласуваш!": @"Sie sind nicht volljährig, um wählen zu dürfen!"
       };
       self.bulgarianLanguage = @{
           @"Не подкрепям никого": @"Не подкрепям никого",
@@ -71,7 +75,9 @@ static LanguageManager* sharedLanguageManager;
           @"Виж резултати": @"Виж резултати",
           @"Проверка": @"Проверка",
           @"Имате ли навършени 18 години?" : @"Имате ли навършени 18 години?",
-          @"Избери език": @"Избери език"
+          @"Избери език": @"Избери език",
+          @"Суек, марш!": @"Суек, марш!",
+          @"Не си пълнолетен, за да гласуваш!": @"Не си пълнолетен, за да гласуваш!"
       };
       self.englishLanguage = @{
           @"Не подкрепям никого": @"I don't support anyone",
@@ -85,7 +91,9 @@ static LanguageManager* sharedLanguageManager;
           @"Виж резултати": @"Show results",
           @"Проверка": @"Attention",
           @"Имате ли навършени 18 години?" : @"Are you at least 18 years old?",
-          @"Избери език": @"Pick a language"
+          @"Избери език": @"Pick a language",
+          @"Суек, марш!": @"Get out!",
+          @"Не си пълнолетен, за да гласуваш!": @"You're underaged! You cant vote!"
       };
   }
   return self;

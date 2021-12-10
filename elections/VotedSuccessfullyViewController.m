@@ -20,11 +20,11 @@
 @implementation VotedSuccessfullyViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     [self.nextButton setTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Следващия"] forState:normal];
     [self.showResultsButton setTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Виж резултати"] forState:normal];
     [self.votedSuccessfullyLabel setText: [LanguageManager.sharedLanguageManager stringForKey:@"Гласувахте успешно!"]];
     [self.thankYouLabel setText: [LanguageManager.sharedLanguageManager stringForKey:@"Благодарим Ви, че гласувахте!"]];
-    [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
 

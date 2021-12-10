@@ -136,14 +136,17 @@
     }
    
     cell.progressBarVoteResult.progress = currentPartyVotesShare;
-    cell.percentageLabel.text = [NSString stringWithFormat: @"%.2f%%", (double) currentPartyVotesShare * 100];
+    cell.percentageLabel.text = @"";
     
     if (self.resultsHidden) {
         cell.progressBarVoteResult.hidden = YES;
         cell.percentageLabel.hidden = YES;
     } else {
         cell.progressBarVoteResult.hidden = NO;
-        if (currentPartyVotesShare >= 0.1) cell.percentageLabel.hidden = NO;
+        if (currentPartyVotesShare >= 0.1) {
+            cell.percentageLabel.text = [NSString stringWithFormat: @"%.2f%%", (double) currentPartyVotesShare * 100];
+            cell.percentageLabel.hidden = NO;
+        }
     }
     
     return cell;
@@ -227,7 +230,7 @@
                                           delay:0.0
                                         options:UIViewAnimationOptionAllowUserInteraction
                                      animations:^void() {
-                                        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);   
+                                        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
                                         [self.tableView cellForRowAtIndexPath:indexPath].backgroundColor = UIColor.lightGrayColor;}
                                      completion:^(BOOL finished) {
 
@@ -357,23 +360,35 @@
     [self showAgeCheckerViewController];
 }
 
+-(void) localizeNavBarNextButton {
+    [self.navBarNextButton setTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Следващия"]];
+}
+
 - (void)showLanguageActionSheetController{
-    UIAlertController* languageActionSheet = [UIAlertController alertControllerWithTitle:@"Избери език" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController* languageActionSheet = [UIAlertController alertControllerWithTitle:[LanguageManager.sharedLanguageManager stringForKey:@"Избери език"] message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     
     [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Български" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageBulgarian];
+        [self localizeNavBarNextButton];
+        [self.tableView reloadData];
     }]];
     
     [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Türk" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageTurkish];
+        [self localizeNavBarNextButton];
+        [self.tableView reloadData];
     }]];
     
     [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"English" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageEnglish];
+        [self localizeNavBarNextButton];
+        [self.tableView reloadData];
     }]];
     
     [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Deutsch" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageGerman];
+        [self localizeNavBarNextButton];
+        [self.tableView reloadData];
     }]];
     
     [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];

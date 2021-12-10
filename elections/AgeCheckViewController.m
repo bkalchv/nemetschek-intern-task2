@@ -33,7 +33,7 @@
 }
 
 - (void)showLanguageActionSheetController{
-    UIAlertController* languageActionSheet = [UIAlertController alertControllerWithTitle:@"Избери език" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController* languageActionSheet = [UIAlertController alertControllerWithTitle:[LanguageManager.sharedLanguageManager stringForKey:@"Избери език"] message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     
     [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Български" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageBulgarian];
@@ -62,7 +62,7 @@
 }
 
 - (void)showUnderAgedAlert {
-    UIAlertController* alertUnderaged = [UIAlertController alertControllerWithTitle:@"Суек, марш!" message:@"Не си пълнолетен, за да гласуваш!" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController* alertUnderaged = [UIAlertController alertControllerWithTitle:[LanguageManager.sharedLanguageManager stringForKey:@"Суек, марш!"] message:[LanguageManager.sharedLanguageManager stringForKey:@"Не си пълнолетен, за да гласуваш!"] preferredStyle:UIAlertControllerStyleAlert];
     
     [alertUnderaged addAction: [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
                                             handler:^(UIAlertAction * action) {
