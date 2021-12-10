@@ -260,6 +260,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Не"/>
+                                <connections>
+                                    <action selector="onAgeCheckNoButtonClick:" destination="p9F-xw-21t" eventType="touchUpInside" id="bbR-tY-U7y"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Имате ли навършени 18 години?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eof-zf-Zdl">
                                 <rect key="frame" x="57" y="314" width="300" height="24"/>

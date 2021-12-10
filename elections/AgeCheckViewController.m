@@ -24,13 +24,11 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:YES];
-    [self.delegate didDismissViewController:self didManually:YES];
-}
-
 - (IBAction)onAgeCheckYesButtonClick:(id)sender {
-    [self.delegate didDismissViewController:self didManually:NO];
+    [self.presentingViewController dismissViewControllerAnimated:self completion:nil];
+}
+- (IBAction)onAgeCheckNoButtonClick:(id)sender {
+
 }
 
 /*

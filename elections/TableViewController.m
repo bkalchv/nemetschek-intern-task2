@@ -16,8 +16,7 @@
 
 @interface TableViewController()
 @property (strong, nonatomic) NSArray<Party*>* tableData;
-@property BOOL languageSheetsAppearedOnce;
-@property BOOL ageAlertAppearedOnce;
+@property BOOL ageCheckVCAppearedOnce;
 @property BOOL resultsHidden;
 @property BOOL ageCheckDismissedManually;
 @property NSMutableDictionary<NSString *, NSNumber *>* votesDictionary;
@@ -71,9 +70,7 @@
     [[Party alloc] initWithName: @"Пряка демокрация" numberOfAppearance: 30],
     [[Party alloc] initWithName: @"Не подкрепям никого" numberOfAppearance: 31]];
     
-    self.languageSheetsAppearedOnce = NO;
-    
-    self.ageAlertAppearedOnce = NO;
+    self.ageCheckVCAppearedOnce = NO;
     
     self.votesDictionary = [[NSMutableDictionary alloc] init];
     
@@ -158,7 +155,8 @@
 - (void)showAgeCheckerViewController {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     AgeCheckViewController* ageCheckVC = [storyboard instantiateViewControllerWithIdentifier:@"AgeCheckViewController"];
-    ageCheckVC.delegate = self;
+    //ageCheckVC.block
+    ageCheckVC.presentationController.delegate = self;
     [self presentViewController:ageCheckVC animated:YES completion:nil];
     
 //    UIViewController* ageCheckerVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
@@ -375,8 +373,7 @@
 
 - (void)refreshScreen {
     [self deselectParty: self.lastSelected];
-    self.languageSheetsAppearedOnce = NO;
-    self.ageAlertAppearedOnce = NO;
+    self.ageCheckVCAppearedOnce = NO;
     NSIndexPath* indexPathTop = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView scrollToRowAtIndexPath:indexPathTop atScrollPosition: UITableViewScrollPositionTop animated:NO];
     self.resultsHidden = YES;
@@ -403,37 +400,21 @@
     
     [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Български" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageBulgarian];
-        if (!self.ageAlertAppearedOnce) {
-            [self showAgeCheckerViewController];
-            self.ageAlertAppearedOnce = YES;
-        }
     }]];
     
     [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Türk" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageTurkish];
-        if (!self.ageAlertAppearedOnce) {
-            [self showAgeCheckAlert];
-            self.ageAlertAppearedOnce = YES;
-        }
     }]];
     
     [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"English" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageEnglish];
-        if (!self.ageAlertAppearedOnce) {
-            [self showAgeCheckAlert];
-            self.ageAlertAppearedOnce = YES;
-        }
     }]];
     
     [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Deutsch" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         [LanguageManager.sharedLanguageManager changeToLanguage:EnumLanguageGerman];
-        if (!self.ageAlertAppearedOnce) {
-            [self showAgeCheckAlert];
-            self.ageAlertAppearedOnce = YES;
-        }
     }]];
     
-    if (self.languageSheetsAppearedOnce) [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [languageActionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
     
     [self presentViewController: languageActionSheet animated:YES completion:^(void) {
     }];
@@ -443,14 +424,9 @@
     [self showLanguageActionSheetController];
 }
 
-- (void)didDismissViewController:(nonnull UIViewController *)presentingVc didManually:(BOOL) didManually {
-    if (didManually) {
-        [self showUnderAgedAlert];
-    } else {
-        [self dismissViewControllerAnimated:presentingVc completion:nil];
-    }
+- (void)presentationControllerDidDismiss:(UIPresentationController *)presentationController {
+    exit(0);
 }
-
 
 @end
 

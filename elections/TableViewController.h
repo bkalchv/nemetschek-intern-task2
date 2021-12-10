@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TableViewController : UITableViewController <VotedSuccessfullyViewControllerDelegate, AgeCheckViewControllerDelegate>
+@interface TableViewController : UITableViewController <VotedSuccessfullyViewControllerDelegate, UIAdaptivePresentationControllerDelegate>
 @end
 
 NS_ASSUME_NONNULL_END
