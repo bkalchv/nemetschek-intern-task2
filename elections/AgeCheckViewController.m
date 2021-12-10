@@ -24,10 +24,26 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)showUnderAgedAlert {
+    UIAlertController* alertUnderaged = [UIAlertController alertControllerWithTitle:@"Суек, марш!" message:@"Не си пълнолетен, за да гласуваш!" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertUnderaged addAction: [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction * action) {
+                                            [self presentViewController: alertUnderaged animated:YES completion:nil];
+    }]];
+    
+    [alertUnderaged addAction: [UIAlertAction actionWithTitle:@"Not Ok" style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction * action) {
+                                            [self presentViewController: alertUnderaged animated:YES completion:nil];
+    }]];
+    
+    [self presentViewController: alertUnderaged animated:YES completion:nil];
+}
+
 - (IBAction)onAgeCheckYesButtonClick:(id)sender {
     [self.presentingViewController dismissViewControllerAnimated:self completion:nil];
 }
 - (IBAction)onAgeCheckNoButtonClick:(id)sender {
-
+    [self showUnderAgedAlert];
 }
 @end

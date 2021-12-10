@@ -158,46 +158,6 @@
     ageCheckVC.presentationController.delegate = self;
     [self presentViewController:ageCheckVC animated:YES completion:nil];
     self.ageCheckVCAppearedOnce = YES;
-    
-//    UIViewController* ageCheckerVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
-//    [ageCheckerVC setTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Имате ли навършени 18 години?"]];
-//    CGSize ageCheckerVCSize = CGSizeMake(self.view.frame.size.width, 400);
-//    [ageCheckerVC setPreferredContentSize: ageCheckerVCSize];
-//    ageCheckerVC.view.backgroundColor = UIColor.blackColor;
-//    ageCheckerVC.view.size
-//    [ageCheckerVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
-//
-//    [self presentViewController:ageCheckerVC animated:YES completion: nil];
-}
-
-- (void)showUnderAgedAlert {
-    UIAlertController* alertUnderaged = [UIAlertController alertControllerWithTitle:@"Суек, марш!" message:@"Не си пълнолетен, за да гласуваш!" preferredStyle:UIAlertControllerStyleAlert];
-    
-    [alertUnderaged addAction: [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
-                                            handler:^(UIAlertAction * action) {
-                                            [self presentViewController: alertUnderaged animated:YES completion:nil];
-    }]];
-    
-    [alertUnderaged addAction: [UIAlertAction actionWithTitle:@"Not Ok" style:UIAlertActionStyleDefault
-                                            handler:^(UIAlertAction * action) {
-                                            [self presentViewController: alertUnderaged animated:YES completion:nil];
-    }]];
-    
-    [self presentViewController: alertUnderaged animated:YES completion:nil];
-}
-
-- (void)showAgeCheckAlert {
-    UIAlertController* alertAgeCheck = [UIAlertController alertControllerWithTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Проверка"] message: [LanguageManager.sharedLanguageManager stringForKey:@"Имате ли навършени 18 години?"] preferredStyle:UIAlertControllerStyleAlert];
-    
-    [alertAgeCheck addAction: [UIAlertAction actionWithTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Да"] style:UIAlertActionStyleDefault
-                                            handler:^(UIAlertAction * action) {}]];
-    
-    [alertAgeCheck addAction: [UIAlertAction actionWithTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Не"] style:UIAlertActionStyleDestructive
-                                            handler:^(UIAlertAction * action) {
-                                            [self showUnderAgedAlert];
-    }]];
-    
-    [self presentViewController:alertAgeCheck animated:YES completion:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
