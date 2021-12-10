@@ -285,6 +285,9 @@
                                 <rect key="frame" x="346" y="75" width="48" height="38"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="langauge"/>
+                                <connections>
+                                    <action selector="onLanguageBtnClick:" destination="p9F-xw-21t" eventType="touchUpInside" id="u4I-Jt-cX9"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="z2N-Ib-QBc"/>
@@ -309,6 +312,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="ageCheckLabel" destination="Eof-zf-Zdl" id="NIt-Ok-XUo"/>
+                        <outlet property="ageCheckLanguageButton" destination="20l-zP-tSn" id="Z56-tT-6ku"/>
                         <outlet property="ageCheckNoButton" destination="opw-V4-1wf" id="dwb-WF-1fr"/>
                         <outlet property="ageCheckYesButton" destination="HNr-S8-dgv" id="cPS-hg-hoD"/>
                     </connections>
