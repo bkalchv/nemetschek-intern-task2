@@ -155,9 +155,9 @@
 - (void)showAgeCheckerViewController {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     AgeCheckViewController* ageCheckVC = [storyboard instantiateViewControllerWithIdentifier:@"AgeCheckViewController"];
-    //ageCheckVC.block
     ageCheckVC.presentationController.delegate = self;
     [self presentViewController:ageCheckVC animated:YES completion:nil];
+    self.ageCheckVCAppearedOnce = YES;
     
 //    UIViewController* ageCheckerVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
 //    [ageCheckerVC setTitle: [LanguageManager.sharedLanguageManager stringForKey:@"Имате ли навършени 18 години?"]];
@@ -202,12 +202,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    [self showAgeCheckerViewController];
-//    if (!self.languageSheetsAppearedOnce) {
-//        [self showLanguageActionSheetController];
-//        self.languageSheetsAppearedOnce = YES;
-//    }
+    if (!self.ageCheckVCAppearedOnce) {
+        [self showAgeCheckerViewController];
+    }
 }
 
 - (void) selectParty:(NSIndexPath*)indexPath {
@@ -383,6 +380,7 @@
 
 - (void)makeResultsVisible {
     self.resultsHidden = NO;
+    self.ageCheckVCAppearedOnce = YES;
     [self.navBarNextButton setTitle: [LanguageManager.sharedLanguageManager stringForKey: @"Следващия"]];
     self.navigationItem.leftBarButtonItem = self.navBarNextButton;
     self.tableView.allowsSelection = NO;
@@ -392,7 +390,7 @@
 - (IBAction)onNavBarNextButtonClick:(id)sender {
     self.tableView.allowsSelection = YES;
     [self refreshScreen];
-    //[self viewDidAppear: true]; // legit?
+    [self showAgeCheckerViewController];
 }
 
 - (void)showLanguageActionSheetController{
